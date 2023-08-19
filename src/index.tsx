@@ -2,10 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
+import {Outlet} from 'react-router-dom'
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import LoginContextProvider from './auth/LoginContext'
 import ThemeRegistry from './Theme/ThemeRegistry'
 import MainNav from './navbar/MainNav'
+import About from './pages/about/page'
+import {Container} from '@mui/joy'
 
 export const metadata = {
   title: 'SimulShift',
@@ -13,10 +16,29 @@ export const metadata = {
     'SimulShift is a streamer who is building a chatbot for twitch and eventually other platforms such as Discord.',
 }
 
+const NavbarWrapper = () => {
+  return (
+    <Container maxWidth="lg">
+      <MainNav />
+      <Outlet />
+    </Container>
+  )
+}
+
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainNav />,
+    element: <NavbarWrapper />,
+    children: [
+      {
+        path: '/', // yes, again
+        element: <div>Hello World Contact Home</div>,
+      },
+      {
+        path: '/About',
+        element: <About />,
+      },
+    ],
   },
 ])
 

@@ -1,5 +1,31 @@
 import {createContext, useContext, useEffect, useState} from 'react'
-import {TwitchUserData, getProfile} from '../navbar/components/pfp/pfpHelpers'
+import {cookieToJson, getCookie} from '../utils/Cookie'
+
+export type TwitchUserData = {
+  id: string
+  login: string
+  displayName: string
+  image: string
+  createdAt: string
+}
+
+/**
+ * Get the twitch user data from the cookie
+ * @returns {TwitchUserData}
+ */
+export const getProfile = (): TwitchUserData | null => {
+  try {
+    const cookie = getCookie('userData')
+    if (!cookie) {
+      console.log('No cookie found in getProfile')
+      return null
+    }
+    return cookieToJson(cookie)
+  } catch (e) {
+    console.error('Error getting profile', e)
+    return null
+  }
+}
 
 interface LoginContext {
   loggedIn: boolean
@@ -13,10 +39,10 @@ const defaultContext: LoginContext = {
   setLoggedIn: (value: boolean) => {},
 }
 
-const LoginContext = createContext<LoginContext>(defaultContext)
+const loginText = createContext<LoginContext>(defaultContext)
 
 export const useLoginContext = () => {
-  return useContext(LoginContext)
+  return useContext(loginText)
 }
 
 const LoginContextProvider = ({children}: {children: React.ReactNode}) => {
@@ -33,9 +59,7 @@ const LoginContextProvider = ({children}: {children: React.ReactNode}) => {
   }, [loggedIn])
 
   return (
-    <LoginContext.Provider value={{loggedIn, profile, setLoggedIn}}>
-      {children}
-    </LoginContext.Provider>
+    <loginText.Provider value={{loggedIn, profile, setLoggedIn}}>{children}</loginText.Provider>
   )
 }
 

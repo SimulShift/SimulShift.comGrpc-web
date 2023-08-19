@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 import Transport from 'nodemailer-sendinblue-transport'
-export async function POST(request) {
+export async function POST(request: Request) {
   // Parse the JSON data from the request body
   const {name, email, message} = await request.json()
 

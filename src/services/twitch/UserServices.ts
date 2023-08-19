@@ -1,4 +1,4 @@
-import {TwitchUserData} from '../../navbar/components/pfp/pfpHelpers'
+import {TwitchUserData} from '../../auth/LoginContext'
 import UrlBuilder, {TwitchUserEndPoints} from '../../utils/UrlBuilder'
 
 /* Checks if the bot is alive

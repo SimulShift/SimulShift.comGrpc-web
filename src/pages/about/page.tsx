@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import me from '/public/me.jpg'
+import me from '../../assets/me.jpg'
 import {Box, Typography, Button, Container} from '@mui/joy'
 
-const About = async () => {
+const About = () => {
   return (
     <Container sx={{backgroundColor: '#4d4940'}}>
       <Box

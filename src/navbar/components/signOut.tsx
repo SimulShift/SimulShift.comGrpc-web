@@ -1,4 +1,3 @@
-'use client'
 import {ButtonHTMLAttributes} from 'react'
 import UrlBuilder, {AuthEndPoints} from '../../utils/UrlBuilder'
 

@@ -1,14 +1,11 @@
 import {Divider, Menu, MenuItem, Switch, useColorScheme} from '@mui/joy'
 import SignOutButton from '../signOut'
-import {getProfile} from './pfpHelpers'
+import {useLoginContext} from '../../../auth/LoginContext'
 
 const ThemeSwitch = () => {
   const {mode, setMode} = useColorScheme()
-
   return <Switch onChange={() => setMode(mode === 'light' ? 'dark' : 'light')} sx={{ml: 1}} />
 }
-
-const profile = getProfile()
 
 interface MobilePfpDropdownProps {
   mobileDisplay: boolean
@@ -31,6 +28,8 @@ type PfpDropdown = {
   mobileDisplay: boolean
 }
 const PfpDropdownItems = ({mobileDisplay}: PfpDropdown) => {
+  const loginContext = useLoginContext()
+
   return (
     <>
       <Menu>
@@ -40,7 +39,7 @@ const PfpDropdownItems = ({mobileDisplay}: PfpDropdown) => {
         </MenuItem>
         <MenuItem href="/profile">Profile</MenuItem>
         <MenuItem href="/settings">Settings</MenuItem>
-        {profile?.displayName?.toLocaleLowerCase() === 'therealchadgpt' && (
+        {loginContext.profile?.displayName?.toLocaleLowerCase() === 'therealchadgpt' && (
           <MenuItem href="/admin">Admin</MenuItem>
         )}
         <MenuItem>

@@ -1,5 +1,4 @@
 import {useLoginContext} from '../../../auth/LoginContext'
-import {getProfile} from './pfpHelpers'
 
 type PfpProps = {
   width?: number
@@ -7,9 +6,7 @@ type PfpProps = {
 
 const Pfp = ({width}: PfpProps) => {
   const loginContext = useLoginContext()
-  console.log('loginContext', loginContext)
   if (!loginContext?.profile?.image) return null
-  console.log('Getting image porofile', loginContext.profile.image)
 
   return (
     <img
@@ -18,9 +15,8 @@ const Pfp = ({width}: PfpProps) => {
       width="0"
       height="0"
       sizes="100vw"
-      style={{width: width, height: 'auto'}}
+      style={{width: width, height: 'auto', borderRadius: '50%'}}
       placeholder="blur"
-      className="rounded-full"
     />
   )
 }

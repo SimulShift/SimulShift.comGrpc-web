@@ -1,10 +1,9 @@
 import PfpMenu from './components/pfp/PfpMenu'
-import {List, ListItem, ListItemButton} from '@mui/joy'
+import {List, ListItemButton} from '@mui/joy'
 import SimulShiftLogo from '../assets/SimulShiftLogo.png'
 import {useEffect} from 'react'
 import {useLoginContext} from '../auth/LoginContext'
 import UrlBuilder, {AuthEndPoints} from '../utils/UrlBuilder'
-import {Sign} from 'crypto'
 
 const checkIfLoggedIn = async (): Promise<boolean> => {
   // check if logged in
@@ -13,7 +12,7 @@ const checkIfLoggedIn = async (): Promise<boolean> => {
     credentials: 'include',
   })
   const data = await res.json()
-  console.log('finished checkinged if logged in', data)
+  //console.log('finished checkinged if logged in', data)
   return data.loggedIn
 }
 

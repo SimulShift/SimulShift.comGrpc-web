@@ -105,7 +105,7 @@ class UrlBuilder {
     if (this.url.pathname.slice(0, 2) === '//') {
       this.url.pathname = this.url.pathname.slice(1)
     }
-    console.log('built url:', this.url.toString())
+    //console.log('built url:', this.url.toString())
     return this.url.toString()
   }
 }

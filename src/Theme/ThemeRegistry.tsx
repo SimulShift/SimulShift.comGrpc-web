@@ -43,7 +43,15 @@ export default function ThemeRegistry({children}: {children: React.ReactNode}) {
         },
       },
     },
+
     components: {
+      JoyListItemButton: {
+        styleOverrides: {
+          root: {
+            fontWeight: 300,
+          },
+        },
+      },
       JoyTypography: {
         styleOverrides: {
           root: {
