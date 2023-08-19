@@ -18,8 +18,14 @@ export const metadata = {
 
 const NavbarWrapper = () => {
   return (
-    <Container maxWidth="lg">
-      <MainNav />
+    <Container
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}>
+      <MainNav style={{marginTop: 0.7}} />
       <Outlet />
     </Container>
   )

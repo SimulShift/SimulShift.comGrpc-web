@@ -3,7 +3,11 @@ import Navbar from './Navbar'
 import PfpMenu from './components/pfp/PfpMenu'
 import {useEffect, useState} from 'react'
 
-const MainNav = () => {
+type MainNavProps = {
+  style?: React.CSSProperties
+}
+
+const MainNav = ({style}: MainNavProps) => {
   const [isPhoneSize, setIsPhoneSize] = useState(false)
 
   useEffect(() => {
@@ -29,7 +33,7 @@ const MainNav = () => {
       <PfpMenu mobileDisplay={isPhoneSize} />
     </Box>
   ) : (
-    <Navbar />
+    <Navbar style={style} />
   )
 }
 

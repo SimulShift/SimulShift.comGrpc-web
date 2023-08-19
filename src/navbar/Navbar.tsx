@@ -29,7 +29,11 @@ const SignInProfileChunk = () => {
   }
 }
 
-const Navbar = () => {
+type NavbarProps = {
+  style?: React.CSSProperties
+}
+
+const Navbar = ({style}: NavbarProps) => {
   const loginContext = useLoginContext()
 
   useEffect(() => {
@@ -51,8 +55,9 @@ const Navbar = () => {
         bgcolor: 'background.body',
         borderRadius: '4px',
         maxWidth: 'fit-content',
+        mt: style?.marginTop,
       }}>
-      <a href="/">
+      <ListItemButton href="/">
         <img
           src={SimulShiftLogo}
           alt="logo"
@@ -62,7 +67,7 @@ const Navbar = () => {
           sizes="100vw"
           style={{width: 40, height: 'auto'}}
         />
-      </a>
+      </ListItemButton>
       <ListItemButton href="/">Home</ListItemButton>
       <ListItemButton href="/about">About</ListItemButton>
       <ListItemButton href="/chatbot">Chat Bot</ListItemButton>
