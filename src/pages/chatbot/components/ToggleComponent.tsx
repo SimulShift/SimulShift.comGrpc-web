@@ -1,5 +1,5 @@
 import {Box, Typography} from '@mui/joy'
-import ToggleSwitch from '../../components/ToggleSwitch'
+import ToggleSwitch from '../../../navbar/components/ToggleSwitch'
 
 const ToggleComponent = () => {
   const activeToggle = 'Your Chatbot is Online! Give chad  a command in your twitch channel'

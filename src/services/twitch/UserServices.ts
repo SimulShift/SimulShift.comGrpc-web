@@ -1,14 +1,15 @@
-import UrlBuilder, {TwitchUserEndPoints} from '@/utils/UrlBuilder'
+import {TwitchUserData} from '../../navbar/components/pfp/pfpHelpers'
+import UrlBuilder, {TwitchUserEndPoints} from '../../utils/UrlBuilder'
 
 /* Checks if the bot is alive
  * @param session: Session object from next-auth
  */
-export const botJoined = async (session: Session): Promise<boolean> => {
-  const urlBuilder = new UrlBuilder().channel(session.user?.name)
+export const botJoined = async (twitchUserData: TwitchUserData): Promise<boolean> => {
+  const urlBuilder = new UrlBuilder().channel(twitchUserData?.displayName)
   urlBuilder.twitch(TwitchUserEndPoints.joined)
   try {
     const res = await fetch(urlBuilder.build())
-    const botJoinedResponse: BotJoinedResponse = await res.json()
+    const botJoinedResponse: any = await res.json()
     return botJoinedResponse.joined
   } catch (e) {
     return false
@@ -29,7 +30,7 @@ export const checkJoined = async (channel: string, userId: string): Promise<bool
       },
     })
 
-    const BotJoinedRespnse: BotJoinedResponse = await response.json()
+    const BotJoinedRespnse: any = await response.json()
     console.log(`Checking if bot joined ${channel} with response:`, BotJoinedRespnse)
     return BotJoinedRespnse.joined
   } catch (e) {
@@ -70,7 +71,7 @@ export const joinChannel = async (channel: string, userId: string): Promise<bool
       'Content-Type': 'application/json',
     },
   })
-  const botJoinedResponse: BotJoinedResponse = await res.json()
+  const botJoinedResponse: any = await res.json()
   return botJoinedResponse.joined
 }
 
@@ -88,7 +89,7 @@ export const leaveChannel = async (channel: string, userId: string): Promise<boo
       },
       body: JSON.stringify({userId}),
     })
-    const botLeaveResponse: BotLeaveResponse = await res.json()
+    const botLeaveResponse: any = await res.json()
     return botLeaveResponse.joined
   } catch (error: any) {
     console.error('Unknown error in user leave route', error)

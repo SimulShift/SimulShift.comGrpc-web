@@ -1,6 +1,6 @@
 'use client'
-import UrlBuilder, {AuthEndPoints} from '@/utils/UrlBuilder'
 import {ButtonHTMLAttributes} from 'react'
+import UrlBuilder, {AuthEndPoints} from '../../utils/UrlBuilder'
 
 const signOut = async () => {
   const url = new UrlBuilder().auth(AuthEndPoints.twitch).signout().build()

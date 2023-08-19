@@ -1,4 +1,4 @@
-import {cookieToJson, getCookie} from '../../utils/Cookie'
+import {cookieToJson, getCookie} from '../../../utils/Cookie'
 
 export type TwitchUserData = {
   id: string
@@ -15,7 +15,10 @@ export type TwitchUserData = {
 export const getProfile = (): TwitchUserData | null => {
   try {
     const cookie = getCookie('userData')
-    if (!cookie) return null
+    if (!cookie) {
+      console.log('No cookie found in getProfile')
+      return null
+    }
     return cookieToJson(cookie)
   } catch (e) {
     console.error('Error getting profile', e)

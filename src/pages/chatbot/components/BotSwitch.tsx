@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import {Switch, Tooltip} from '@mui/joy'
-import {TwitchUserData, getProfile} from '../../components/pfp/pfpHelpers'
-import UrlBuilder, {AuthEndPoints} from '../../utils/UrlBuilder'
 import {redirect} from 'react-router-dom'
-import {joinChannel, leaveChannel} from '../../services/twitch/UserServices'
+import UrlBuilder, {AuthEndPoints} from '../../../utils/UrlBuilder'
+import {useLoginContext} from '../../../auth/LoginContext'
+import {TwitchUserData} from '../../../navbar/components/pfp/pfpHelpers'
+import {joinChannel, leaveChannel} from '../../../services/twitch/UserServices'
 
 const activeToggle = 'Your Chatbot is Online! Give chad  a command in your twitch channel'
 const inactiveToggle =
@@ -38,19 +39,19 @@ type BotSwitchProps = {
 }
 
 const BotSwitch = ({online, setOnline}: BotSwitchProps) => {
+  const loginContext = useLoginContext()
   const defaultActiveToggle = activeToggle ?? 'Switched On'
   const defaultInactiveToggle = inactiveToggle ?? 'Switched Off'
   const [profile, setProfile] = useState<TwitchUserData>()
 
   useEffect(() => {
-    const profile = getProfile()
     // Check if the sessionId and profile cookies exist
-    if (!profile) {
+    if (!loginContext.profile) {
       // If either of the cookies is missing, redirect the user to the login page
       const loginUrl = new UrlBuilder().auth(AuthEndPoints.twitch).build()
       redirect(loginUrl)
     } else {
-      setProfile(profile)
+      setProfile(loginContext.profile)
     }
     // Add the dependencies array to avoid unnecessary redirects on every render
   }, [])

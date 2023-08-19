@@ -1,7 +1,7 @@
 import TmiSwitch from './TmiSwitch'
 import TmiStatus from './TmiStatus'
 import {useEffect, useState} from 'react'
-import {useLoginContext} from '../../LoginContext'
+import {useLoginContext} from '../../auth/LoginContext'
 import {TwitchBotAdminServiceClient} from '../../../Protos/TwitchBot/TwitchBotServiceClientPb'
 import {getEnumKey} from '../../utils/EnumTools'
 import {ReadyState, TmiStatusRequest} from '../../../Protos/TwitchBot/TwitchBot_pb'

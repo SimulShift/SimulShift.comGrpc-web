@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import {Box, Typography} from '@mui/joy'
-import {Personality, fetchPersonalities} from '../../services/gpt/UserServices'
-import SelectBar from '../../../components/SelectBar'
+import {Personality, fetchPersonalities} from '../../../services/gpt/UserServices'
+import SelectBar from '../../../navbar/components/SelectBar'
 
 type PersonalityOption = {
   text: Personality

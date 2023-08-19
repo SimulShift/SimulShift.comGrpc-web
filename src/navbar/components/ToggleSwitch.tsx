@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Switch, Tooltip} from '@mui/material'
+import {Switch, Tooltip} from '@mui/joy'
 
 interface Props {
   activeToggle?: string

@@ -1,5 +1,4 @@
-'use client'
-import {AppBar, Box, Typography} from '@mui/material'
+import {Box, Typography} from '@mui/joy'
 import Navbar from './Navbar'
 import PfpMenu from './components/pfp/PfpMenu'
 import {useEffect, useState} from 'react'
@@ -24,7 +23,7 @@ const MainNav = () => {
 
   return isPhoneSize ? (
     <Box m={1} display="flex" flexDirection="row" justifyContent="flex-end" alignItems="flex-end">
-      <Typography variant="h2" component="div" sx={{flexGrow: 1}}>
+      <Typography level="h2" component="div" sx={{flexGrow: 1}}>
         SimulShift
       </Typography>
       <PfpMenu mobileDisplay={isPhoneSize} />

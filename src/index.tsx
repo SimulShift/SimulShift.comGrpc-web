@@ -1,21 +1,33 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import App from './App'
 import reportWebVitals from './reportWebVitals'
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
+import LoginContextProvider from './auth/LoginContext'
+import ThemeRegistry from './Theme/ThemeRegistry'
+import MainNav from './navbar/MainNav'
+
+export const metadata = {
+  title: 'SimulShift',
+  description:
+    'SimulShift is a streamer who is building a chatbot for twitch and eventually other platforms such as Discord.',
+}
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <div>Hello world!</div>,
+    element: <MainNav />,
   },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <LoginContextProvider>
+      <ThemeRegistry>
+        <RouterProvider router={router}></RouterProvider>
+      </ThemeRegistry>
+    </LoginContextProvider>
   </React.StrictMode>,
 )
 

@@ -1,6 +1,5 @@
-'use client'
 import {useState} from 'react'
-import {Button, Dropdown, Menu, styled} from '@mui/joy'
+import {Button, Dropdown, Menu, MenuButton, styled} from '@mui/joy'
 import Pfp from './Pfp'
 import PfpDropdownItems from './PfpDropdownItems'
 
@@ -8,7 +7,7 @@ type ProfilePicDropdownProps = {
   mobileDisplay: boolean
 }
 
-const ProfilePicButton = styled(Button)(({theme}: any) => ({
+const ProfilePicButton = styled(MenuButton)(({theme}) => ({
   backgroundColor: 'transparent',
   color: '#ffffff',
   borderRadius: '100%', // Make the button and everything around it round
@@ -26,7 +25,7 @@ const ProfilePicButton = styled(Button)(({theme}: any) => ({
   '& .MuiTouchRipple-rippleVisible': {
     opacity: 0.5,
     animationDuration: '550ms',
-    animationTimingFunction: theme.transitions.easing.easeInOut,
+    //animationTimingFunction: theme.transitions.easing.easeInOut,
   },
 }))
 
@@ -42,19 +41,12 @@ const PfpMenu = ({mobileDisplay}: ProfilePicDropdownProps) => {
   }
 
   return (
-    <>
-      <ProfilePicButton
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}>
+    <Dropdown>
+      <ProfilePicButton>
         <Pfp width={mobileDisplay ? 50 : 40} />
       </ProfilePicButton>
-      <Dropdown>
-        <PfpDropdownItems mobileDisplay={mobileDisplay} />
-      </Dropdown>
-    </>
+      <PfpDropdownItems mobileDisplay={mobileDisplay} />
+    </Dropdown>
   )
 }
 

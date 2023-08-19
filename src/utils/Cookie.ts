@@ -8,14 +8,6 @@ export const getCookie = (name: string): string | null | undefined => {
     console.log('Not in a browser environment, returning null')
     return null
   }
-  try {
-    if (!document || document?.readyState != 'complete') {
-      return null
-    }
-  } catch {
-    console.log('Error checking if document exists')
-  }
-
   let cookies
   try {
     cookies = decodeURIComponent(document.cookie)

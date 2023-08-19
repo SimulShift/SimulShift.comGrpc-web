@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import BotStatus from './BotStatus'
 import {Box} from '@mui/joy'
 import BotSwitch from './BotSwitch'
-import {checkJoined} from '../../services/twitch/UserServices'
+import {checkJoined} from '../../../services/twitch/UserServices'
 
 const JoinSwitch = () => {
   const [session, setSession] = useState<any>({})
