@@ -28,6 +28,7 @@ type PfpDropdown = {
   mobileDisplay: boolean
 }
 const PfpDropdownItems = ({mobileDisplay}: PfpDropdown) => {
+  const {mode, setMode} = useColorScheme()
   const loginContext = useLoginContext()
 
   return (
@@ -35,7 +36,7 @@ const PfpDropdownItems = ({mobileDisplay}: PfpDropdown) => {
       <Menu>
         <MobilePfpDropdown mobileDisplay={mobileDisplay} />
         <MenuItem>
-          Light Mode <ThemeSwitch />
+          {mode} <ThemeSwitch />
         </MenuItem>
         <MenuItem href="/profile">Profile</MenuItem>
         <MenuItem href="/settings">Settings</MenuItem>

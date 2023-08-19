@@ -1,5 +1,5 @@
 import PfpMenu from './components/pfp/PfpMenu'
-import {List, ListItemButton} from '@mui/joy'
+import {List, ListItemButton, useTheme} from '@mui/joy'
 import SimulShiftLogo from '../assets/SimulShiftLogo.png'
 import {useEffect} from 'react'
 import {useLoginContext} from '../auth/LoginContext'
@@ -34,6 +34,7 @@ type NavbarProps = {
 }
 
 const Navbar = ({style}: NavbarProps) => {
+  const theme = useTheme()
   const loginContext = useLoginContext()
 
   useEffect(() => {
@@ -52,8 +53,8 @@ const Navbar = ({style}: NavbarProps) => {
       role="menubar"
       data-joy-color-scheme="dark"
       sx={{
-        bgcolor: 'background.body',
-        borderRadius: '4px',
+        bgcolor: `rgba(255,255,255, 0.2)`,
+        borderRadius: '10px',
         maxWidth: 'fit-content',
         mt: style?.marginTop,
       }}>
