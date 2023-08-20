@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import me from '../../assets/me.jpg'
-import {Box, Typography, Button, Container} from '@mui/joy'
+import {Box, Typography, Button, Container, useTheme} from '@mui/joy'
+import './about.css'
 
 const About = () => {
+  const theme = useTheme()
   return (
     <Container sx={{backgroundColor: '#4d4940'}}>
       <Box

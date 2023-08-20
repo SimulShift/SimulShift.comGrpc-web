@@ -1,9 +1,21 @@
 import PfpMenu from './components/pfp/PfpMenu'
-import {List, ListItemButton, useTheme} from '@mui/joy'
+import {List, ListItemButton, styled, useTheme} from '@mui/joy'
 import SimulShiftLogo from '../assets/SimulShiftLogo.png'
 import {useEffect} from 'react'
 import {useLoginContext} from '../auth/LoginContext'
 import UrlBuilder, {AuthEndPoints} from '../utils/UrlBuilder'
+
+type StyledNavLinkProps = {
+  href: string
+  children: React.ReactNode
+  // Add any other props you want to use.
+}
+
+const ListLinkItemButton = styled(({href, ...otherProps}: StyledNavLinkProps) => (
+  <ListItemButton component="a" href={href} {...otherProps} />
+))`
+  cursor: pointer;
+`
 
 const checkIfLoggedIn = async (): Promise<boolean> => {
   // check if logged in
@@ -58,7 +70,7 @@ const Navbar = ({style}: NavbarProps) => {
         maxWidth: 'fit-content',
         mt: style?.marginTop,
       }}>
-      <ListItemButton href="/">
+      <ListLinkItemButton href="/">
         <img
           src={SimulShiftLogo}
           alt="logo"
@@ -68,13 +80,13 @@ const Navbar = ({style}: NavbarProps) => {
           sizes="100vw"
           style={{width: 40, height: 'auto'}}
         />
-      </ListItemButton>
-      <ListItemButton href="/">Home</ListItemButton>
-      <ListItemButton href="/about">About</ListItemButton>
-      <ListItemButton href="/chatbot">Chat Bot</ListItemButton>
-      <ListItemButton href="/contact">Contact</ListItemButton>
+      </ListLinkItemButton>
+      <ListLinkItemButton href="/">Home</ListLinkItemButton>
+      <ListLinkItemButton href="/about">About</ListLinkItemButton>
+      <ListLinkItemButton href="/chatbot">Chat Bot</ListLinkItemButton>
+      <ListLinkItemButton href="/contact">Contact</ListLinkItemButton>
       {loginContext?.profile?.displayName == 'therealchadgpt' && (
-        <ListItemButton href="/admin">Admin</ListItemButton>
+        <ListLinkItemButton href="/admin">Admin</ListLinkItemButton>
       )}
       <SignInProfileChunk />
     </List>

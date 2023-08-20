@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         element: <div>Hello World Contact Home</div>,
       },
       {
-        path: '/About',
+        path: '/about',
         element: <About />,
       },
     ],

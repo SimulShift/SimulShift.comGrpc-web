@@ -20,7 +20,12 @@ export default function ThemeRegistry({children}: {children: React.ReactNode}) {
         palette: {
           mode: 'light',
           background: {
+            backdrop: '#ffffff',
             body: '#5664bd',
+          },
+          common: {
+            black: '#000000',
+            white: '#ffffff',
           },
           primary: {
             50: '#95a3ff',
