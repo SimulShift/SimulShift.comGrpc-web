@@ -1,5 +1,5 @@
 import PfpMenu from './components/pfp/PfpMenu'
-import {List, ListItemButton, styled, useTheme} from '@mui/joy'
+import {List, ListItemButton, styled, useColorScheme, useTheme} from '@mui/joy'
 import SimulShiftLogo from '../assets/SimulShiftLogo.png'
 import {useEffect} from 'react'
 import {useLoginContext} from '../auth/LoginContext'
@@ -30,6 +30,7 @@ const checkIfLoggedIn = async (): Promise<boolean> => {
 
 const SignInProfileChunk = () => {
   const loginContext = useLoginContext()
+
   if (loginContext.loggedIn) {
     return <PfpMenu mobileDisplay={false} />
   } else {
@@ -46,7 +47,6 @@ type NavbarProps = {
 }
 
 const Navbar = ({style}: NavbarProps) => {
-  const theme = useTheme()
   const loginContext = useLoginContext()
 
   useEffect(() => {
@@ -69,6 +69,7 @@ const Navbar = ({style}: NavbarProps) => {
         borderRadius: '10px',
         maxWidth: 'fit-content',
         mt: style?.marginTop,
+        mb: style?.marginBottom,
       }}>
       <ListLinkItemButton href="/">
         <img

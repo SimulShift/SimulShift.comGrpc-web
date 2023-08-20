@@ -1,12 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 import me from '../../assets/me.jpg'
-import {Box, Typography, Button, Container, useTheme} from '@mui/joy'
+import {Box, Typography, Button, Container, useTheme, useColorScheme} from '@mui/joy'
 import './about.css'
+import {useEffect, useState} from 'react'
+import useBackgroundColor from '../../Theme/SetBackgroundColor'
 
 const About = () => {
-  const theme = useTheme()
+  const {mode, setMode} = useColorScheme()
+  const [backgroundColor, setBackgroundColor] = useState('#4d4940')
+  useBackgroundColor(mode ?? 'dark', '#4d4940', '#1d1606')
+
   return (
-    <Container sx={{backgroundColor: '#4d4940'}}>
+    <Container sx={mode === 'dark' ? {backgroundColor: '#1d1606'} : {backgroundColor: '#4d4940'}}>
       <Box
         sx={{
           display: 'flex',

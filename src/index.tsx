@@ -25,7 +25,7 @@ const NavbarWrapper = () => {
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-      <MainNav style={{marginTop: 0.7}} />
+      <MainNav style={{marginTop: 0.7, marginBottom: 1}} />
       <Outlet />
     </Container>
   )
