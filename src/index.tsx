@@ -9,6 +9,9 @@ import ThemeRegistry from './Theme/ThemeRegistry'
 import MainNav from './navbar/MainNav'
 import About from './pages/about/page'
 import {Container} from '@mui/joy'
+import ChatBotPage from './pages/chatbot/page'
+import Admin from './pages/admin/page'
+import Home from './pages/home/page'
 
 export const metadata = {
   title: 'SimulShift',
@@ -38,11 +41,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/', // yes, again
-        element: <div>Hello World Contact Home</div>,
+        element: <Home />,
       },
       {
         path: '/about',
         element: <About />,
+      },
+      {
+        path: '/chatbot',
+        element: <ChatBotPage />,
+      },
+      {
+        path: '/admin',
+        element: <Admin />,
       },
     ],
   },

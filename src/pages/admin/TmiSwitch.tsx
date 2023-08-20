@@ -6,8 +6,8 @@ import {
   StartTmiRequest,
   TmiStatusRequest,
   TmiStatusResponse,
-} from '../../../Protos/TwitchBot/TwitchBot_pb'
-import {TwitchBotAdminServiceClient} from '../../../Protos/TwitchBot/TwitchBotServiceClientPb'
+} from '../../Protos/TwitchBot/TwitchBot_pb'
+import {TwitchBotAdminServiceClient} from '../../Protos/TwitchBot/TwitchBotServiceClientPb'
 import {getEnumKey} from '../../utils/EnumTools'
 
 export const MuiSwitchLarge = styled(Switch)(({theme}) => ({

@@ -91,19 +91,9 @@ export default function ThemeRegistry({children}: {children: React.ReactNode}) {
       },
       JoySwitch: {
         styleOverrides: {
-          thumb: {
-            // Controls default (unchecked) color for the thumb
-            color: '#ccc',
-          },
           track: {
-            // Controls default (unchecked) color for the track
-            opacity: 0.2,
-            backgroundColor: '#fff',
-            '.Mui-checked.Mui-checked + &': {
-              // Controls checked color for the track
-              opacity: 0.7,
-              backgroundColor: '#5bfe9f',
-            },
+            backgroundColor: '#a657f0',
+            opacity: 0.3,
           },
         },
       },

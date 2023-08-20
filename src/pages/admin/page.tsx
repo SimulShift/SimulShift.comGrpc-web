@@ -2,13 +2,9 @@ import TmiSwitch from './TmiSwitch'
 import TmiStatus from './TmiStatus'
 import {useEffect, useState} from 'react'
 import {useLoginContext} from '../../auth/LoginContext'
-import {TwitchBotAdminServiceClient} from '../../../Protos/TwitchBot/TwitchBotServiceClientPb'
 import {getEnumKey} from '../../utils/EnumTools'
-import {ReadyState, TmiStatusRequest} from '../../../Protos/TwitchBot/TwitchBot_pb'
-
-//export const fetchCache = 'force-no-store'
-//export const revalidate = 0 // seconds
-//export const dynamic = 'force-dynamic'
+import {TwitchBotAdminServiceClient} from '../../Protos/TwitchBot/TwitchBotServiceClientPb'
+import {ReadyState, TmiStatusRequest} from '../../Protos/TwitchBot/TwitchBot_pb'
 
 var client = new TwitchBotAdminServiceClient('http://localhost:8080', null, {
   withCredentials: true,
