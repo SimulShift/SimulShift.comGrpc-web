@@ -1,20 +1,19 @@
-'use client'
 /* File: /app/chatbot/page.tsx
  * Purpose: create a page for chatbot
- * Author: SimulShift
  */
 
 import ControlPanel from './ControlPanel'
 import Typography from '@mui/joy/Typography'
 import {Container} from '@mui/joy'
+import {useLoginContext} from '../../auth/LoginContext'
 
 const ChatBotPage = () => {
-  const session: any = null
+  const loginContext = useLoginContext()
 
   return (
     <Container maxWidth="md">
       <Typography level="h3" m={5}>
-        {session?.user?.name + "'s Chat Bot Control Room"}
+        {loginContext?.profile?.displayName + "'s Chat Bot Control Room"}
       </Typography>
       <ControlPanel />
     </Container>

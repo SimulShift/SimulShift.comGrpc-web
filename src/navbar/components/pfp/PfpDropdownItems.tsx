@@ -49,7 +49,7 @@ const PfpDropdownItems = ({mobileDisplay}: PfpDropdown) => {
         <MenuItem href="/admin">Admin</MenuItem>
       )}
       <MenuItem>
-        <SignOutButton className="block hover:bg-pink-900 hover:text-white px-4 py-2 rounded-md" />
+        <SignOutButton />
       </MenuItem>
     </Menu>
   )

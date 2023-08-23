@@ -57,13 +57,6 @@ export default function ThemeRegistry({children}: {children: React.ReactNode}) {
           },
         },
       },
-      JoyTypography: {
-        styleOverrides: {
-          root: {
-            color: '#a657f0',
-          },
-        },
-      },
       JoyButton: {
         styleOverrides: {
           root: ({theme}: any) => ({

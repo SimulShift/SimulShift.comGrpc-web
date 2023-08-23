@@ -1,8 +1,11 @@
 import {ButtonHTMLAttributes} from 'react'
 import UrlBuilder, {AuthEndPoints} from '../../utils/UrlBuilder'
+import {Button} from '@mui/joy'
 
 const signOut = async () => {
+  localStorage.setItem('lastVisitedPage', window.location.pathname)
   const url = new UrlBuilder().auth(AuthEndPoints.twitch).signout().build()
+
   const res = await fetch(url, {
     method: 'POST',
     credentials: 'include',
@@ -10,7 +13,8 @@ const signOut = async () => {
   const data = await res.json()
   console.log('signout data', data)
   if (res.ok) {
-    window.location.href = '/'
+    const lastVisitedPage = localStorage.getItem('lastVisitedPage')
+    window.location.href = lastVisitedPage || '/'
   }
 }
 
@@ -20,9 +24,9 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const SignOutButton: React.FC<ButtonProps> = ({className}) => {
   return (
-    <button className={className} onClick={() => signOut()}>
+    <Button className={className} onClick={() => signOut()}>
       Sign out
-    </button>
+    </Button>
   )
 }
 export default SignOutButton

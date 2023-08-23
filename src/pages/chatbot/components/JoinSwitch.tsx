@@ -3,17 +3,18 @@ import BotStatus from './BotStatus'
 import {Box} from '@mui/joy'
 import BotSwitch from './BotSwitch'
 import {checkJoined} from '../../../services/twitch/UserServices'
+import {useLoginContext} from '../../../auth/LoginContext'
 
 const JoinSwitch = () => {
-  const [session, setSession] = useState<any>({})
+  const loginContext = useLoginContext()
   const [joined, setJoined] = useState<boolean>(false)
-
-  //console.log('Session:', session)
 
   const botOnline = async () => {
     try {
-      if (!session?.user?.name || !session.sub) return
-      setJoined(await checkJoined(session.user.name, session.sub))
+      const displayName = loginContext.profile?.displayName
+      const sub = loginContext.profile?.id
+      if (!displayName || !sub) return
+      setJoined(await checkJoined(displayName, sub))
     } catch (err) {
       console.log('Error checking if joined:', err)
     }
@@ -21,7 +22,7 @@ const JoinSwitch = () => {
 
   useEffect(() => {
     botOnline()
-  }, [session])
+  }, [])
 
   return (
     <Box

@@ -18,8 +18,13 @@ const Admin = () => {
     const request = new TmiStatusRequest()
     client.tmiStatus(request, {}, (err, response) => {
       if (err) {
-        console.log('error getting tmi status', err)
+        console.log('error getting tmi status:', err)
       } else {
+        if (!response.getSuccess()) {
+          console.log(`error getting tmi status "${response.getMsg()}"`)
+          setTmiStatusStr('Error getting tmi status')
+          return
+        }
         const readystate = getEnumKey(ReadyState, response.getReadystate())
         console.log('tmi status readystate', readystate, response.getMsg())
         setTmiStatusStr(readystate)

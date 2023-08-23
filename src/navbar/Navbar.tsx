@@ -35,7 +35,7 @@ const SignInProfileChunk = () => {
     return <PfpMenu mobileDisplay={false} />
   } else {
     return (
-      <ListItemButton href={new UrlBuilder().auth(AuthEndPoints.twitch).build()}>
+      <ListItemButton component="a" href={new UrlBuilder().auth(AuthEndPoints.twitch).build()}>
         Sign In
       </ListItemButton>
     )

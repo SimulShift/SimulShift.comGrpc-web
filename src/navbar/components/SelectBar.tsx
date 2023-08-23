@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Dropdown, MenuItem} from '@mui/joy'
+import {Dropdown, Menu, MenuItem} from '@mui/joy'
 
 interface Props {
   options: {text: string; value: string}[]
@@ -17,9 +17,11 @@ const SelectBar: React.FC<Props> = ({options, onChange}) => {
 
   return (
     <Dropdown>
-      {options.map(({text, value}) => (
-        <MenuItem key={value}>{text}</MenuItem>
-      ))}
+      <Menu>
+        {options.map(({text, value}) => (
+          <MenuItem key={value}>{text}</MenuItem>
+        ))}
+      </Menu>
     </Dropdown>
   )
 }

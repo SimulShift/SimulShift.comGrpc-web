@@ -5,10 +5,21 @@ import {redirect} from 'react-router-dom'
 import UrlBuilder, {AuthEndPoints} from '../../../utils/UrlBuilder'
 import {TwitchUserData, useLoginContext} from '../../../auth/LoginContext'
 import {joinChannel, leaveChannel} from '../../../services/twitch/UserServices'
+import {TwitchBotServiceClient} from '../../../Protos/TwitchBot/TwitchBotServiceClientPb'
+import {
+  JoinChannelRequest,
+  JoinChannelResponse,
+  LeaveChannelRequest,
+  LeaveChannelResponse,
+} from '../../../Protos/TwitchBot/TwitchBot_pb'
 
 const activeToggle = 'Your Chatbot is Online! Give chad  a command in your twitch channel'
 const inactiveToggle =
   'Your Chatbot is Offline! Turn it on to give chad commands in your twitch channel'
+
+var twitchBotServiceClient = new TwitchBotServiceClient('http://localhost:8080', null, {
+  withCredentials: true,
+})
 
 export const MuiSwitchLarge = styled(Switch)(({theme}) => ({
   width: 150,
@@ -41,7 +52,6 @@ const BotSwitch = ({online, setOnline}: BotSwitchProps) => {
   const loginContext = useLoginContext()
   const defaultActiveToggle = activeToggle ?? 'Switched On'
   const defaultInactiveToggle = inactiveToggle ?? 'Switched Off'
-  const [profile, setProfile] = useState<TwitchUserData>()
 
   useEffect(() => {
     // Check if the sessionId and profile cookies exist
@@ -49,28 +59,44 @@ const BotSwitch = ({online, setOnline}: BotSwitchProps) => {
       // If either of the cookies is missing, redirect the user to the login page
       const loginUrl = new UrlBuilder().auth(AuthEndPoints.twitch).build()
       redirect(loginUrl)
-    } else {
-      setProfile(loginContext.profile)
     }
-    // Add the dependencies array to avoid unnecessary redirects on every render
   }, [])
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked
-
+    const displayName = loginContext.profile?.displayName
+    const sub = loginContext.profile?.id
     console.log('Switch pressed! checked:', checked)
-
-    if (!profile) {
-      console.log('SessionId or Profile state has not loaded in yet!')
+    if (!displayName || !sub) {
+      console.log('Missing displayName or sub!')
       return
     }
-
-    const joined = checked
-      ? await joinChannel(profile.displayName, profile.id)
-      : await leaveChannel(profile.displayName, profile.id)
-
-    console.log('Processing Finished, joined:', joined)
-    setOnline(joined)
+    if (checked) {
+      twitchBotServiceClient.joinChannel(
+        new JoinChannelRequest(),
+        {},
+        (err: any, response: JoinChannelResponse) => {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log('joinChannel response', response.getMsg())
+          }
+        },
+      )
+    } else {
+      console.log('Leaving channel')
+      twitchBotServiceClient.leaveChannel(
+        new LeaveChannelRequest(),
+        {},
+        (err: any, response: LeaveChannelResponse) => {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log('leaveChannel response', response.getMsg())
+          }
+        },
+      )
+    }
   }
 
   return (

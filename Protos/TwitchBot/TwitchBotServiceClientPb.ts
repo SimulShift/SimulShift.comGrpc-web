@@ -125,49 +125,6 @@ export class TwitchBotServiceClient {
     this.methodDescriptorjoinChannel);
   }
 
-  methodDescriptorleaveChannel = new grpcWeb.MethodDescriptor(
-    '/generated.TwitchBotService/leaveChannel',
-    grpcWeb.MethodType.UNARY,
-    TwitchBot_pb.LeaveChannelRequest,
-    TwitchBot_pb.LeaveChannelResponse,
-    (request: TwitchBot_pb.LeaveChannelRequest) => {
-      return request.serializeBinary();
-    },
-    TwitchBot_pb.LeaveChannelResponse.deserializeBinary
-  );
-
-  leaveChannel(
-    request: TwitchBot_pb.LeaveChannelRequest,
-    metadata: grpcWeb.Metadata | null): Promise<TwitchBot_pb.LeaveChannelResponse>;
-
-  leaveChannel(
-    request: TwitchBot_pb.LeaveChannelRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback: (err: grpcWeb.RpcError,
-               response: TwitchBot_pb.LeaveChannelResponse) => void): grpcWeb.ClientReadableStream<TwitchBot_pb.LeaveChannelResponse>;
-
-  leaveChannel(
-    request: TwitchBot_pb.LeaveChannelRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback?: (err: grpcWeb.RpcError,
-               response: TwitchBot_pb.LeaveChannelResponse) => void) {
-    if (callback !== undefined) {
-      return this.client_.rpcCall(
-        this.hostname_ +
-          '/generated.TwitchBotService/leaveChannel',
-        request,
-        metadata || {},
-        this.methodDescriptorleaveChannel,
-        callback);
-    }
-    return this.client_.unaryCall(
-    this.hostname_ +
-      '/generated.TwitchBotService/leaveChannel',
-    request,
-    metadata || {},
-    this.methodDescriptorleaveChannel);
-  }
-
 }
 
 export class TwitchBotAdminServiceClient {
