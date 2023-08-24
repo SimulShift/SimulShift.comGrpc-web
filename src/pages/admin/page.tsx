@@ -5,6 +5,7 @@ import {useLoginContext} from '../../auth/LoginContext'
 import {getEnumKey} from '../../utils/EnumTools'
 import {TwitchBotAdminServiceClient} from '../../Protos/TwitchBot/TwitchBotServiceClientPb'
 import {ReadyState, TmiStatusRequest} from '../../Protos/TwitchBot/TwitchBot_pb'
+import {RpcError} from 'grpc-web'
 
 var client = new TwitchBotAdminServiceClient('http://localhost:8080', null, {
   withCredentials: true,
@@ -16,7 +17,7 @@ const Admin = () => {
 
   useEffect(() => {
     const request = new TmiStatusRequest()
-    client.tmiStatus(request, {}, (err, response) => {
+    client.tmiStatus(request, {}, (err: RpcError, response) => {
       if (err) {
         console.log('error getting tmi status:', err)
       } else {
