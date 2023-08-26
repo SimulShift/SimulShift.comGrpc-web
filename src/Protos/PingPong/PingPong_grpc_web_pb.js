@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for generated
+ * @fileoverview gRPC-Web generated client stub for 
  * @enhanceable
  * @public
  */
@@ -19,8 +19,7 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
-const proto = {};
-proto.generated = require('./PingPong_pb.js');
+const proto = require('./PingPong_pb.js');
 
 /**
  * @param {string} hostname
@@ -30,7 +29,7 @@ proto.generated = require('./PingPong_pb.js');
  * @struct
  * @final
  */
-proto.generated.PingPongServiceClient =
+proto.PingPongServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -56,7 +55,7 @@ proto.generated.PingPongServiceClient =
  * @struct
  * @final
  */
-proto.generated.PingPongServicePromiseClient =
+proto.PingPongServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
@@ -77,39 +76,39 @@ proto.generated.PingPongServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.generated.PingRequest,
- *   !proto.generated.PongResponse>}
+ *   !proto.PingRequest,
+ *   !proto.PongResponse>}
  */
 const methodDescriptor_PingPongService_ping = new grpc.web.MethodDescriptor(
-  '/generated.PingPongService/ping',
+  '/PingPongService/ping',
   grpc.web.MethodType.UNARY,
-  proto.generated.PingRequest,
-  proto.generated.PongResponse,
+  proto.PingRequest,
+  proto.PongResponse,
   /**
-   * @param {!proto.generated.PingRequest} request
+   * @param {!proto.PingRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.generated.PongResponse.deserializeBinary
+  proto.PongResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.generated.PingRequest} request The
+ * @param {!proto.PingRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.generated.PongResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.PongResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.generated.PongResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.PongResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.generated.PingPongServiceClient.prototype.ping =
+proto.PingPongServiceClient.prototype.ping =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/generated.PingPongService/ping',
+      '/PingPongService/ping',
       request,
       metadata || {},
       methodDescriptor_PingPongService_ping,
@@ -118,22 +117,22 @@ proto.generated.PingPongServiceClient.prototype.ping =
 
 
 /**
- * @param {!proto.generated.PingRequest} request The
+ * @param {!proto.PingRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.generated.PongResponse>}
+ * @return {!Promise<!proto.PongResponse>}
  *     Promise that resolves to the response
  */
-proto.generated.PingPongServicePromiseClient.prototype.ping =
+proto.PingPongServicePromiseClient.prototype.ping =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/generated.PingPongService/ping',
+      '/PingPongService/ping',
       request,
       metadata || {},
       methodDescriptor_PingPongService_ping);
 };
 
 
-module.exports = proto.generated;
+module.exports = proto;
 

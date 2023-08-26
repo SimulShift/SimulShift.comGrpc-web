@@ -3,24 +3,12 @@ import styled from '@emotion/styled'
 import {Switch, Tooltip} from '@mui/joy'
 import {redirect} from 'react-router-dom'
 import UrlBuilder, {AuthEndPoints} from '../../../utils/UrlBuilder'
-import {TwitchUserData, useLoginContext} from '../../../auth/LoginContext'
-import {joinChannel, leaveChannel} from '../../../services/twitch/UserServices'
-import {TwitchBotServiceClient} from '../../../Protos/TwitchBot/TwitchBotServiceClientPb'
-import {
-  JoinChannelRequest,
-  JoinChannelResponse,
-  LeaveChannelRequest,
-  LeaveChannelResponse,
-} from '../../../Protos/TwitchBot/TwitchBot_pb'
+import {useLoginContext} from '../../../auth/LoginContext'
+import {joinChannelRpc, leaveChannelRpc} from '../../../services/TwitchServices'
 
 const activeToggle = 'Your Chatbot is Online! Give chad  a command in your twitch channel'
 const inactiveToggle =
   'Your Chatbot is Offline! Turn it on to give chad commands in your twitch channel'
-
-var twitchBotServiceClient = new TwitchBotServiceClient('http://localhost:8080', null, {
-  withCredentials: true,
-})
-
 export const MuiSwitchLarge = styled(Switch)(({theme}) => ({
   width: 150,
   height: 70,
@@ -71,32 +59,7 @@ const BotSwitch = ({online, setOnline}: BotSwitchProps) => {
       console.log('Missing displayName or sub!')
       return
     }
-    if (checked) {
-      twitchBotServiceClient.joinChannel(
-        new JoinChannelRequest(),
-        {},
-        (err: any, response: JoinChannelResponse) => {
-          if (err) {
-            console.log(err)
-          } else {
-            console.log('joinChannel response', response)
-          }
-        },
-      )
-    } else {
-      console.log('Leaving channel')
-      twitchBotServiceClient.leaveChannel(
-        new LeaveChannelRequest(),
-        {},
-        (err: any, response: LeaveChannelResponse) => {
-          if (err) {
-            console.log(err)
-          } else {
-            console.log('leaveChannel response', response)
-          }
-        },
-      )
-    }
+    checked ? joinChannelRpc() : leaveChannelRpc()
   }
 
   return (
