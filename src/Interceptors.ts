@@ -1,19 +1,23 @@
 import {Request, UnaryInterceptor, UnaryResponse} from 'grpc-web'
 
-export class HelloUnaryInterceptor
-  implements UnaryInterceptor<Request<any, any>, UnaryResponse<any, any>>
+export class HelloUnaryInterceptor<REQ, RES>
+  implements UnaryInterceptor<Request<REQ, RES>, UnaryResponse<REQ, RES>>
 {
   intercept(
-    request: Request<any, any>,
-    invoker: (request: Request<any, any>) => Promise<any>,
+    request: Request<Request<REQ, RES>, UnaryResponse<REQ, RES>>,
+    invoker: (
+      request: Request<Request<REQ, RES>, UnaryResponse<REQ, RES>>,
+    ) => Promise<UnaryResponse<Request<REQ, RES>, UnaryResponse<REQ, RES>>>,
   ): Promise<any> {
-    // Assuming the Request has a setMessage and getMessage method.
-    // If not, this needs adjustments.
     console.log('Inside interceptor')
 
-    return invoker(request).then(response => {
-      console.log('metaData', response.getMetadata())
-      return response
-    })
+    return invoker(request)
+      .then(response => {
+        console.log('response inside invoke', response.getStatus())
+        return response
+      })
+      .catch(error => {
+        console.log('error inside invoke', error)
+      })
   }
 }
