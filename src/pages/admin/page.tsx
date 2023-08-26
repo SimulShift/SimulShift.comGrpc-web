@@ -20,14 +20,10 @@ const Admin = () => {
     client.tmiStatus(request, {}, (err: RpcError, response) => {
       if (err) {
         console.log('error getting tmi status:', err)
+        setTmiStatusStr('Error getting tmi status')
       } else {
-        if (!response.getSuccess()) {
-          console.log(`error getting tmi status "${response.getMsg()}"`)
-          setTmiStatusStr('Error getting tmi status')
-          return
-        }
         const readystate = getEnumKey(ReadyState, response.getReadystate())
-        console.log('tmi status readystate', readystate, response.getMsg())
+        console.log('tmi status readystate', readystate)
         setTmiStatusStr(readystate)
       }
     })

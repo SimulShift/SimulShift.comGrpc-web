@@ -5,9 +5,11 @@ import {PingRequest, PongResponse} from '../../Protos/PingPong/PingPong_pb'
 import TwitchPlayer from './TwitchPlayer'
 import {RpcError, StatusCode} from 'grpc-web'
 import {getEnumKey, getErrorCodeName} from '../../utils/EnumTools'
+import {HelloUnaryInterceptor} from '../../Interceptors'
 
 var client = new PingPongServiceClient('http://localhost:8080', null, {
   withCredentials: true,
+  unaryInterceptors: [new HelloUnaryInterceptor()],
 })
 
 const Home = () => {

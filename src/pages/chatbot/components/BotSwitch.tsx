@@ -79,7 +79,7 @@ const BotSwitch = ({online, setOnline}: BotSwitchProps) => {
           if (err) {
             console.log(err)
           } else {
-            console.log('joinChannel response', response.getMsg())
+            console.log('joinChannel response', response)
           }
         },
       )
@@ -92,7 +92,7 @@ const BotSwitch = ({online, setOnline}: BotSwitchProps) => {
           if (err) {
             console.log(err)
           } else {
-            console.log('leaveChannel response', response.getMsg())
+            console.log('leaveChannel response', response)
           }
         },
       )

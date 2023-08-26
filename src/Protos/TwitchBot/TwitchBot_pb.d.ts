@@ -49,11 +49,8 @@ export namespace JoinChannelRequest {
 }
 
 export class JoinChannelResponse extends jspb.Message {
-  getMsg(): string;
-  setMsg(value: string): JoinChannelResponse;
-
-  getSuccess(): boolean;
-  setSuccess(value: boolean): JoinChannelResponse;
+  getReadystate(): ReadyState;
+  setReadystate(value: ReadyState): JoinChannelResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): JoinChannelResponse.AsObject;
@@ -65,8 +62,7 @@ export class JoinChannelResponse extends jspb.Message {
 
 export namespace JoinChannelResponse {
   export type AsObject = {
-    msg: string,
-    success: boolean,
+    readystate: ReadyState,
   }
 }
 
@@ -85,8 +81,8 @@ export namespace LeaveChannelRequest {
 }
 
 export class LeaveChannelResponse extends jspb.Message {
-  getMsg(): string;
-  setMsg(value: string): LeaveChannelResponse;
+  getReadystate(): ReadyState;
+  setReadystate(value: ReadyState): LeaveChannelResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): LeaveChannelResponse.AsObject;
@@ -98,7 +94,7 @@ export class LeaveChannelResponse extends jspb.Message {
 
 export namespace LeaveChannelResponse {
   export type AsObject = {
-    msg: string,
+    readystate: ReadyState,
   }
 }
 
@@ -117,14 +113,8 @@ export namespace TmiStatusRequest {
 }
 
 export class TmiStatusResponse extends jspb.Message {
-  getMsg(): string;
-  setMsg(value: string): TmiStatusResponse;
-
   getReadystate(): ReadyState;
   setReadystate(value: ReadyState): TmiStatusResponse;
-
-  getSuccess(): boolean;
-  setSuccess(value: boolean): TmiStatusResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TmiStatusResponse.AsObject;
@@ -136,9 +126,7 @@ export class TmiStatusResponse extends jspb.Message {
 
 export namespace TmiStatusResponse {
   export type AsObject = {
-    msg: string,
     readystate: ReadyState,
-    success: boolean,
   }
 }
 
@@ -157,14 +145,8 @@ export namespace StartTmiRequest {
 }
 
 export class StartTmiResponse extends jspb.Message {
-  getMsg(): string;
-  setMsg(value: string): StartTmiResponse;
-
   getReadystate(): ReadyState;
   setReadystate(value: ReadyState): StartTmiResponse;
-
-  getSuccess(): boolean;
-  setSuccess(value: boolean): StartTmiResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): StartTmiResponse.AsObject;
@@ -176,9 +158,7 @@ export class StartTmiResponse extends jspb.Message {
 
 export namespace StartTmiResponse {
   export type AsObject = {
-    msg: string,
     readystate: ReadyState,
-    success: boolean,
   }
 }
 
@@ -197,9 +177,6 @@ export namespace StopTmiRequest {
 }
 
 export class StopTmiResponse extends jspb.Message {
-  getMsg(): string;
-  setMsg(value: string): StopTmiResponse;
-
   getReadystate(): ReadyState;
   setReadystate(value: ReadyState): StopTmiResponse;
 
@@ -213,7 +190,6 @@ export class StopTmiResponse extends jspb.Message {
 
 export namespace StopTmiResponse {
   export type AsObject = {
-    msg: string,
     readystate: ReadyState,
   }
 }

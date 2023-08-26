@@ -650,8 +650,7 @@ proto.generated.JoinChannelResponse.prototype.toObject = function(opt_includeIns
  */
 proto.generated.JoinChannelResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    msg: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    success: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+    readystate: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -689,12 +688,8 @@ proto.generated.JoinChannelResponse.deserializeBinaryFromReader = function(msg, 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMsg(value);
-      break;
-    case 2:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setSuccess(value);
+      var value = /** @type {!proto.generated.ReadyState} */ (reader.readEnum());
+      msg.setReadystate(value);
       break;
     default:
       reader.skipField();
@@ -725,56 +720,31 @@ proto.generated.JoinChannelResponse.prototype.serializeBinary = function() {
  */
 proto.generated.JoinChannelResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMsg();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getReadystate();
+  if (f !== 0.0) {
+    writer.writeEnum(
       1,
       f
     );
   }
-  f = message.getSuccess();
-  if (f) {
-    writer.writeBool(
-      2,
-      f
-    );
-  }
 };
 
 
 /**
- * optional string msg = 1;
- * @return {string}
+ * optional ReadyState readystate = 1;
+ * @return {!proto.generated.ReadyState}
  */
-proto.generated.JoinChannelResponse.prototype.getMsg = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.generated.JoinChannelResponse.prototype.getReadystate = function() {
+  return /** @type {!proto.generated.ReadyState} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.generated.ReadyState} value
  * @return {!proto.generated.JoinChannelResponse} returns this
  */
-proto.generated.JoinChannelResponse.prototype.setMsg = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional bool success = 2;
- * @return {boolean}
- */
-proto.generated.JoinChannelResponse.prototype.getSuccess = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.generated.JoinChannelResponse} returns this
- */
-proto.generated.JoinChannelResponse.prototype.setSuccess = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 2, value);
+proto.generated.JoinChannelResponse.prototype.setReadystate = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -911,7 +881,7 @@ proto.generated.LeaveChannelResponse.prototype.toObject = function(opt_includeIn
  */
 proto.generated.LeaveChannelResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    msg: jspb.Message.getFieldWithDefault(msg, 1, "")
+    readystate: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -949,8 +919,8 @@ proto.generated.LeaveChannelResponse.deserializeBinaryFromReader = function(msg,
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMsg(value);
+      var value = /** @type {!proto.generated.ReadyState} */ (reader.readEnum());
+      msg.setReadystate(value);
       break;
     default:
       reader.skipField();
@@ -981,9 +951,9 @@ proto.generated.LeaveChannelResponse.prototype.serializeBinary = function() {
  */
 proto.generated.LeaveChannelResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMsg();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getReadystate();
+  if (f !== 0.0) {
+    writer.writeEnum(
       1,
       f
     );
@@ -992,20 +962,20 @@ proto.generated.LeaveChannelResponse.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional string msg = 1;
- * @return {string}
+ * optional ReadyState readystate = 1;
+ * @return {!proto.generated.ReadyState}
  */
-proto.generated.LeaveChannelResponse.prototype.getMsg = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.generated.LeaveChannelResponse.prototype.getReadystate = function() {
+  return /** @type {!proto.generated.ReadyState} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.generated.ReadyState} value
  * @return {!proto.generated.LeaveChannelResponse} returns this
  */
-proto.generated.LeaveChannelResponse.prototype.setMsg = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.generated.LeaveChannelResponse.prototype.setReadystate = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -1142,9 +1112,7 @@ proto.generated.TmiStatusResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.generated.TmiStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    msg: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    readystate: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    success: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    readystate: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -1182,16 +1150,8 @@ proto.generated.TmiStatusResponse.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMsg(value);
-      break;
-    case 2:
       var value = /** @type {!proto.generated.ReadyState} */ (reader.readEnum());
       msg.setReadystate(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setSuccess(value);
       break;
     default:
       reader.skipField();
@@ -1222,54 +1182,22 @@ proto.generated.TmiStatusResponse.prototype.serializeBinary = function() {
  */
 proto.generated.TmiStatusResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMsg();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getReadystate();
+  if (f !== 0.0) {
+    writer.writeEnum(
       1,
       f
     );
   }
-  f = message.getReadystate();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      2,
-      f
-    );
-  }
-  f = message.getSuccess();
-  if (f) {
-    writer.writeBool(
-      3,
-      f
-    );
-  }
 };
 
 
 /**
- * optional string msg = 1;
- * @return {string}
- */
-proto.generated.TmiStatusResponse.prototype.getMsg = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.generated.TmiStatusResponse} returns this
- */
-proto.generated.TmiStatusResponse.prototype.setMsg = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional ReadyState readystate = 2;
+ * optional ReadyState readystate = 1;
  * @return {!proto.generated.ReadyState}
  */
 proto.generated.TmiStatusResponse.prototype.getReadystate = function() {
-  return /** @type {!proto.generated.ReadyState} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {!proto.generated.ReadyState} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
@@ -1278,25 +1206,7 @@ proto.generated.TmiStatusResponse.prototype.getReadystate = function() {
  * @return {!proto.generated.TmiStatusResponse} returns this
  */
 proto.generated.TmiStatusResponse.prototype.setReadystate = function(value) {
-  return jspb.Message.setProto3EnumField(this, 2, value);
-};
-
-
-/**
- * optional bool success = 3;
- * @return {boolean}
- */
-proto.generated.TmiStatusResponse.prototype.getSuccess = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.generated.TmiStatusResponse} returns this
- */
-proto.generated.TmiStatusResponse.prototype.setSuccess = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
+  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -1433,9 +1343,7 @@ proto.generated.StartTmiResponse.prototype.toObject = function(opt_includeInstan
  */
 proto.generated.StartTmiResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    msg: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    readystate: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    success: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    readystate: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -1473,16 +1381,8 @@ proto.generated.StartTmiResponse.deserializeBinaryFromReader = function(msg, rea
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMsg(value);
-      break;
-    case 2:
       var value = /** @type {!proto.generated.ReadyState} */ (reader.readEnum());
       msg.setReadystate(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setSuccess(value);
       break;
     default:
       reader.skipField();
@@ -1513,54 +1413,22 @@ proto.generated.StartTmiResponse.prototype.serializeBinary = function() {
  */
 proto.generated.StartTmiResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMsg();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getReadystate();
+  if (f !== 0.0) {
+    writer.writeEnum(
       1,
       f
     );
   }
-  f = message.getReadystate();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      2,
-      f
-    );
-  }
-  f = message.getSuccess();
-  if (f) {
-    writer.writeBool(
-      3,
-      f
-    );
-  }
 };
 
 
 /**
- * optional string msg = 1;
- * @return {string}
- */
-proto.generated.StartTmiResponse.prototype.getMsg = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.generated.StartTmiResponse} returns this
- */
-proto.generated.StartTmiResponse.prototype.setMsg = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional ReadyState readystate = 2;
+ * optional ReadyState readystate = 1;
  * @return {!proto.generated.ReadyState}
  */
 proto.generated.StartTmiResponse.prototype.getReadystate = function() {
-  return /** @type {!proto.generated.ReadyState} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {!proto.generated.ReadyState} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
@@ -1569,25 +1437,7 @@ proto.generated.StartTmiResponse.prototype.getReadystate = function() {
  * @return {!proto.generated.StartTmiResponse} returns this
  */
 proto.generated.StartTmiResponse.prototype.setReadystate = function(value) {
-  return jspb.Message.setProto3EnumField(this, 2, value);
-};
-
-
-/**
- * optional bool success = 3;
- * @return {boolean}
- */
-proto.generated.StartTmiResponse.prototype.getSuccess = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.generated.StartTmiResponse} returns this
- */
-proto.generated.StartTmiResponse.prototype.setSuccess = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
+  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -1724,8 +1574,7 @@ proto.generated.StopTmiResponse.prototype.toObject = function(opt_includeInstanc
  */
 proto.generated.StopTmiResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    msg: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    readystate: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    readystate: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -1763,10 +1612,6 @@ proto.generated.StopTmiResponse.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMsg(value);
-      break;
-    case 2:
       var value = /** @type {!proto.generated.ReadyState} */ (reader.readEnum());
       msg.setReadystate(value);
       break;
@@ -1799,47 +1644,22 @@ proto.generated.StopTmiResponse.prototype.serializeBinary = function() {
  */
 proto.generated.StopTmiResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMsg();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getReadystate();
+  if (f !== 0.0) {
+    writer.writeEnum(
       1,
       f
     );
   }
-  f = message.getReadystate();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      2,
-      f
-    );
-  }
 };
 
 
 /**
- * optional string msg = 1;
- * @return {string}
- */
-proto.generated.StopTmiResponse.prototype.getMsg = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.generated.StopTmiResponse} returns this
- */
-proto.generated.StopTmiResponse.prototype.setMsg = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional ReadyState readystate = 2;
+ * optional ReadyState readystate = 1;
  * @return {!proto.generated.ReadyState}
  */
 proto.generated.StopTmiResponse.prototype.getReadystate = function() {
-  return /** @type {!proto.generated.ReadyState} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {!proto.generated.ReadyState} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
@@ -1848,7 +1668,7 @@ proto.generated.StopTmiResponse.prototype.getReadystate = function() {
  * @return {!proto.generated.StopTmiResponse} returns this
  */
 proto.generated.StopTmiResponse.prototype.setReadystate = function(value) {
-  return jspb.Message.setProto3EnumField(this, 2, value);
+  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
