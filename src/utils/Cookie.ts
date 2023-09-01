@@ -10,6 +10,7 @@ export const getCookie = (name: string): string | null | undefined => {
   }
   let cookies
   try {
+    console.log(document.cookie)
     cookies = decodeURIComponent(document.cookie)
   } catch {
     console.log('error decoding cookie')
