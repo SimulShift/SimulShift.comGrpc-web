@@ -194,6 +194,40 @@ export namespace StopTmiResponse {
   }
 }
 
+export class GetJoinedChannelsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetJoinedChannelsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetJoinedChannelsRequest): GetJoinedChannelsRequest.AsObject;
+  static serializeBinaryToWriter(message: GetJoinedChannelsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetJoinedChannelsRequest;
+  static deserializeBinaryFromReader(message: GetJoinedChannelsRequest, reader: jspb.BinaryReader): GetJoinedChannelsRequest;
+}
+
+export namespace GetJoinedChannelsRequest {
+  export type AsObject = {
+  }
+}
+
+export class GetJoinedChannelsResponse extends jspb.Message {
+  getChannelsList(): Array<string>;
+  setChannelsList(value: Array<string>): GetJoinedChannelsResponse;
+  clearChannelsList(): GetJoinedChannelsResponse;
+  addChannels(value: string, index?: number): GetJoinedChannelsResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetJoinedChannelsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetJoinedChannelsResponse): GetJoinedChannelsResponse.AsObject;
+  static serializeBinaryToWriter(message: GetJoinedChannelsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetJoinedChannelsResponse;
+  static deserializeBinaryFromReader(message: GetJoinedChannelsResponse, reader: jspb.BinaryReader): GetJoinedChannelsResponse;
+}
+
+export namespace GetJoinedChannelsResponse {
+  export type AsObject = {
+    channelsList: Array<string>,
+  }
+}
+
 export enum ReadyState { 
   CONNECTING = 0,
   OPEN = 1,

@@ -4,7 +4,7 @@ import {Switch, Tooltip} from '@mui/joy'
 import {redirect} from 'react-router-dom'
 import UrlBuilder, {AuthEndPoints} from '../../../utils/UrlBuilder'
 import {useLoginContext} from '../../../auth/LoginContext'
-import {joinChannelRpc, leaveChannelRpc} from '../../../services/TwitchServices'
+import {checkJoinedrpc, joinChannelRpc, leaveChannelRpc} from '../../../services/TwitchServices'
 
 const activeToggle = 'Your Chatbot is Online! Give chad  a command in your twitch channel'
 const inactiveToggle =
@@ -43,11 +43,12 @@ const BotSwitch = ({online, setOnline}: BotSwitchProps) => {
 
   useEffect(() => {
     // Check if the sessionId and profile cookies exist
-    if (!loginContext.profile) {
+    if (!loginContext.profile || !loginContext.loggedIn) {
       // If either of the cookies is missing, redirect the user to the login page
       const loginUrl = new UrlBuilder().auth(AuthEndPoints.twitch).build()
       redirect(loginUrl)
     }
+    checkJoinedrpc(setOnline)
   }, [])
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +60,7 @@ const BotSwitch = ({online, setOnline}: BotSwitchProps) => {
       console.log('Missing displayName or sub!')
       return
     }
-    checked ? joinChannelRpc() : leaveChannelRpc()
+    checked ? joinChannelRpc(setOnline) : leaveChannelRpc(setOnline)
   }
 
   return (

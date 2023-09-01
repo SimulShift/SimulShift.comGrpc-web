@@ -77,13 +77,13 @@ proto.TwitchBotServicePromiseClient =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.CheckJoinedRequest,
- *   !proto.CheckJoinedRequest>}
+ *   !proto.CheckJoinedResponse>}
  */
 const methodDescriptor_TwitchBotService_checkJoined = new grpc.web.MethodDescriptor(
   '/TwitchBotService/checkJoined',
   grpc.web.MethodType.UNARY,
   proto.CheckJoinedRequest,
-  proto.CheckJoinedRequest,
+  proto.CheckJoinedResponse,
   /**
    * @param {!proto.CheckJoinedRequest} request
    * @return {!Uint8Array}
@@ -91,7 +91,7 @@ const methodDescriptor_TwitchBotService_checkJoined = new grpc.web.MethodDescrip
   function(request) {
     return request.serializeBinary();
   },
-  proto.CheckJoinedRequest.deserializeBinary
+  proto.CheckJoinedResponse.deserializeBinary
 );
 
 
@@ -100,9 +100,9 @@ const methodDescriptor_TwitchBotService_checkJoined = new grpc.web.MethodDescrip
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.CheckJoinedRequest)}
+ * @param {function(?grpc.web.RpcError, ?proto.CheckJoinedResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.CheckJoinedRequest>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.CheckJoinedResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.TwitchBotServiceClient.prototype.checkJoined =
@@ -121,7 +121,7 @@ proto.TwitchBotServiceClient.prototype.checkJoined =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.CheckJoinedRequest>}
+ * @return {!Promise<!proto.CheckJoinedResponse>}
  *     Promise that resolves to the response
  */
 proto.TwitchBotServicePromiseClient.prototype.checkJoined =
@@ -488,6 +488,67 @@ proto.TwitchBotAdminServicePromiseClient.prototype.stopTmi =
       request,
       metadata || {},
       methodDescriptor_TwitchBotAdminService_stopTmi);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.GetJoinedChannelsRequest,
+ *   !proto.GetJoinedChannelsResponse>}
+ */
+const methodDescriptor_TwitchBotAdminService_getJoinedChannels = new grpc.web.MethodDescriptor(
+  '/TwitchBotAdminService/getJoinedChannels',
+  grpc.web.MethodType.UNARY,
+  proto.GetJoinedChannelsRequest,
+  proto.GetJoinedChannelsResponse,
+  /**
+   * @param {!proto.GetJoinedChannelsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.GetJoinedChannelsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.GetJoinedChannelsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.GetJoinedChannelsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.GetJoinedChannelsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.TwitchBotAdminServiceClient.prototype.getJoinedChannels =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/TwitchBotAdminService/getJoinedChannels',
+      request,
+      metadata || {},
+      methodDescriptor_TwitchBotAdminService_getJoinedChannels,
+      callback);
+};
+
+
+/**
+ * @param {!proto.GetJoinedChannelsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.GetJoinedChannelsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.TwitchBotAdminServicePromiseClient.prototype.getJoinedChannels =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/TwitchBotAdminService/getJoinedChannels',
+      request,
+      metadata || {},
+      methodDescriptor_TwitchBotAdminService_getJoinedChannels);
 };
 
 

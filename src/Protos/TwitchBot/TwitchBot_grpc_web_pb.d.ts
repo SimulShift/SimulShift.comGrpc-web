@@ -12,8 +12,8 @@ export class TwitchBotServiceClient {
     request: TwitchBot_pb.CheckJoinedRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: TwitchBot_pb.CheckJoinedRequest) => void
-  ): grpcWeb.ClientReadableStream<TwitchBot_pb.CheckJoinedRequest>;
+               response: TwitchBot_pb.CheckJoinedResponse) => void
+  ): grpcWeb.ClientReadableStream<TwitchBot_pb.CheckJoinedResponse>;
 
   joinChannel(
     request: TwitchBot_pb.JoinChannelRequest,
@@ -57,6 +57,13 @@ export class TwitchBotAdminServiceClient {
                response: TwitchBot_pb.StopTmiResponse) => void
   ): grpcWeb.ClientReadableStream<TwitchBot_pb.StopTmiResponse>;
 
+  getJoinedChannels(
+    request: TwitchBot_pb.GetJoinedChannelsRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: TwitchBot_pb.GetJoinedChannelsResponse) => void
+  ): grpcWeb.ClientReadableStream<TwitchBot_pb.GetJoinedChannelsResponse>;
+
 }
 
 export class TwitchBotServicePromiseClient {
@@ -67,7 +74,7 @@ export class TwitchBotServicePromiseClient {
   checkJoined(
     request: TwitchBot_pb.CheckJoinedRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<TwitchBot_pb.CheckJoinedRequest>;
+  ): Promise<TwitchBot_pb.CheckJoinedResponse>;
 
   joinChannel(
     request: TwitchBot_pb.JoinChannelRequest,
@@ -100,6 +107,11 @@ export class TwitchBotAdminServicePromiseClient {
     request: TwitchBot_pb.StopTmiRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<TwitchBot_pb.StopTmiResponse>;
+
+  getJoinedChannels(
+    request: TwitchBot_pb.GetJoinedChannelsRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<TwitchBot_pb.GetJoinedChannelsResponse>;
 
 }
 
