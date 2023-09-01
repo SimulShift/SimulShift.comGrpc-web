@@ -17,9 +17,13 @@ import {getEnumKey} from '../utils/EnumTools'
 /* =========== TwitchBotAdminService =========== */
 /* ============================================= */
 
-var client = new TwitchBotAdminServicePromiseClient('http://localhost:8080', null, {
-  withCredentials: true,
-})
+var client = new TwitchBotAdminServicePromiseClient(
+  process.env.REACT_APP_GRPC_URL ?? 'localhost:8080',
+  null,
+  {
+    withCredentials: true,
+  },
+)
 
 export const getTmiStatusRpc = async (setTmiStatusStr: Dispatch<React.SetStateAction<string>>) => {
   try {
@@ -84,9 +88,13 @@ export const getJoinedChannelsRpc = async (
 /* ============= TwitchBotService ============== */
 /* ============================================= */
 
-var twitchBotServiceClient = new TwitchBotServicePromiseClient('http://localhost:8080', null, {
-  withCredentials: true,
-})
+var twitchBotServiceClient = new TwitchBotServicePromiseClient(
+  process.env.REACT_APP_GRPC_URL ?? 'localhost:8080',
+  null,
+  {
+    withCredentials: true,
+  },
+)
 
 export const checkJoinedrpc = async (setOnline: (online: boolean) => void) => {
   try {

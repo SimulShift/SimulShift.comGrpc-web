@@ -2,21 +2,17 @@ import {Container, Typography} from '@mui/joy'
 import {Dispatch, useEffect, useState} from 'react'
 import {PingRequest, PongResponse} from '../../Protos/PingPong/PingPong_pb'
 import TwitchPlayer from './TwitchPlayer'
-import {RpcError, StatusCode} from 'grpc-web'
 import {getEnumKey, getErrorCodeName} from '../../utils/EnumTools'
 import {HelloUnaryInterceptor} from '../../Interceptors'
 import {PingPongServicePromiseClient} from '../../Protos/PingPong/PingPong_grpc_web_pb'
 
-/*
-var client = new PingPongServiceClient('http://localhost:8080', null, {
-  withCredentials: true,
-  //unaryInterceptors: [new HelloUnaryInterceptor()],
-})
-*/
-
-const client = new PingPongServicePromiseClient('http://localhost:8080', null, {
-  withCredentials: true,
-})
+const client = new PingPongServicePromiseClient(
+  process.env.REACT_APP_GRPC_URL ?? 'localhost:8080',
+  null,
+  {
+    withCredentials: true,
+  },
+)
 
 const ping = async (setPing: Dispatch<React.SetStateAction<boolean>>) => {
   const request = new PingRequest()
