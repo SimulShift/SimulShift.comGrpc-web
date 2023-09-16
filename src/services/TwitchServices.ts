@@ -80,8 +80,16 @@ export const stopTmiRpc = async (setTmiStatusStr: Dispatch<SetStateAction<string
 export const getJoinedChannelsRpc = async (
   setJoinedChannels: Dispatch<SetStateAction<string[]>>,
 ) => {
-  const response = await client.getJoinedChannels(new StartTmiRequest())
-  setJoinedChannels(response.getChannelsList())
+  try {
+    const response = await client.getJoinedChannels(new StartTmiRequest())
+    setJoinedChannels(response.getChannelsList())
+  } catch (err) {
+    if (err instanceof RpcError) {
+      console.log('error getting joined channels:', err)
+    } else {
+      console.log('error getting joined channels:', err)
+    }
+  }
 }
 
 /* ============================================= */
