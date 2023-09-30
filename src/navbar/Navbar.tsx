@@ -50,11 +50,6 @@ const Navbar = ({style}: NavbarProps) => {
   const loginContext = useLoginContext()
 
   useEffect(() => {
-    //console.log('checking if logged in inside navbar', loginContext.loggedIn)
-    loginContext.setLoggedIn(loginContext.loggedIn)
-  }, [loginContext.loggedIn])
-
-  useEffect(() => {
     checkIfLoggedIn().then(value => loginContext.setLoggedIn(value))
   }, [])
 
