@@ -50,7 +50,10 @@ const Navbar = ({style}: NavbarProps) => {
   const loginContext = useLoginContext()
 
   useEffect(() => {
-    checkIfLoggedIn().then(value => loginContext.setLoggedIn(value))
+    checkIfLoggedIn().then(value => {
+      console.log('setting logged in to', value)
+      loginContext.setLoggedIn(value)
+    })
   }, [])
 
   return (

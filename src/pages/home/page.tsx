@@ -18,7 +18,6 @@ const ping = async (setPing: Dispatch<React.SetStateAction<boolean>>) => {
   const request = new PingRequest()
   try {
     const response = await client.ping(request)
-    console.log('ping response', response.getOk())
     setPing(response.getOk())
   } catch (err: any) {
     console.log('error getting ping response:', getErrorCodeName(err.code))
