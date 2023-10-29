@@ -24,7 +24,7 @@ const checkIfLoggedIn = async (): Promise<boolean> => {
     credentials: 'include',
   })
   const data = await res.json()
-  //console.log('finished checkinged if logged in', data)
+  console.log('finished checkinged if logged in', data)
   return data.loggedIn
 }
 
@@ -50,10 +50,7 @@ const Navbar = ({style}: NavbarProps) => {
   const loginContext = useLoginContext()
 
   useEffect(() => {
-    checkIfLoggedIn().then(value => {
-      console.log('setting logged in to', value)
-      loginContext.setLoggedIn(value)
-    })
+    checkIfLoggedIn().then(value => loginContext.setLoggedIn(value))
   }, [])
 
   return (
