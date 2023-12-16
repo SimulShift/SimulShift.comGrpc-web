@@ -1,4 +1,5 @@
 import React from 'react'
+import {ErrorBoundary, FallbackProps} from 'react-error-boundary'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
@@ -17,6 +18,22 @@ export const metadata = {
   title: 'SimulShift',
   description:
     'SimulShift is a streamer who is building a chatbot for twitch and eventually other platforms such as Discord.',
+}
+
+function MyFallbackComponent({error, resetErrorBoundary}: FallbackProps) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  )
+}
+
+// Error logging function
+function logErrorToService(error: Error, info: React.ErrorInfo) {
+  // Use your preferred error logging service
+  console.error('Caught an error:', error, info)
 }
 
 const NavbarWrapper = () => {
@@ -62,11 +79,13 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <LoginContextProvider>
-      <ThemeRegistry>
-        <RouterProvider router={router}></RouterProvider>
-      </ThemeRegistry>
-    </LoginContextProvider>
+    <ErrorBoundary FallbackComponent={MyFallbackComponent} onError={logErrorToService}>
+      <LoginContextProvider>
+        <ThemeRegistry>
+          <RouterProvider router={router}></RouterProvider>
+        </ThemeRegistry>
+      </LoginContextProvider>
+    </ErrorBoundary>
   </React.StrictMode>,
 )
 
