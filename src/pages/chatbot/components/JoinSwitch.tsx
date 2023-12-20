@@ -11,7 +11,7 @@ const JoinSwitch = () => {
 
   const botOnline = async () => {
     try {
-      const displayName = loginContext.profile?.displayName
+      const displayName = loginContext.profile?.username
       const sub = loginContext.profile?.id
       if (!displayName || !sub) return
       setJoined(await checkJoined(displayName, sub))

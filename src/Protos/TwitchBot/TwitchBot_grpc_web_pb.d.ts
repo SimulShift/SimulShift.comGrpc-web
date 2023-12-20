@@ -1,6 +1,6 @@
 import * as grpcWeb from 'grpc-web';
 
-import * as TwitchBot_pb from './TwitchBot_pb';
+import * as TwitchBot_pb from './TwitchBot_pb'; // proto import: "TwitchBot.proto"
 
 
 export class TwitchBotServiceClient {

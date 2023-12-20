@@ -228,6 +228,13 @@ export namespace GetJoinedChannelsResponse {
   }
 }
 
+export enum Personality { 
+  UNKNOWN = 0,
+  CHAD = 1,
+  HELPFUL = 2,
+  SHY = 3,
+  UWU = 4,
+}
 export enum ReadyState { 
   CONNECTING = 0,
   OPEN = 1,

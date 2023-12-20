@@ -45,7 +45,7 @@ const PfpDropdownItems = ({mobileDisplay}: PfpDropdown) => {
       </MenuItem>
       <MenuItem href="/profile">Profile</MenuItem>
       <MenuItem href="/settings">Settings</MenuItem>
-      {loginContext.profile?.displayName?.toLocaleLowerCase() === 'therealchadgpt' && (
+      {loginContext.profile?.username?.toLocaleLowerCase() === 'therealchadgpt' && (
         <MenuItem href="/admin">Admin</MenuItem>
       )}
       <MenuItem>

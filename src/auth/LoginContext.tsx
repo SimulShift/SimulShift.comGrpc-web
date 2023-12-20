@@ -4,7 +4,7 @@ import {cookieToJson, getCookie} from '../utils/Cookie'
 export type TwitchUserData = {
   id: string
   login: string
-  displayName: string
+  username: string
   image: string
   createdAt: string
 }
@@ -52,6 +52,7 @@ const LoginContextProvider = ({children}: {children: React.ReactNode}) => {
   useEffect(() => {
     // getProfile() must be done in here to wait for the dom to load
     setProfile(getProfile())
+    console.log('checking profile info', getProfile())
   }, [])
 
   useEffect(() => {

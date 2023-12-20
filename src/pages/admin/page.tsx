@@ -18,7 +18,7 @@ const Admin = () => {
   return (
     <div>
       <h1>Admin</h1>
-      {loginContext?.profile?.displayName.toLocaleLowerCase() === 'therealchadgpt' && (
+      {loginContext?.profile?.username.toLocaleLowerCase() === 'therealchadgpt' && (
         <>
           <TmiStatus status={tmiStatusStr} />
           <TmiSwitch status={tmiStatusStr} setTmiStatusStr={setTmiStatusStr} />

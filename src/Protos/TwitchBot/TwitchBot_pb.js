@@ -29,6 +29,7 @@ goog.exportSymbol('proto.JoinChannelRequest', null, global);
 goog.exportSymbol('proto.JoinChannelResponse', null, global);
 goog.exportSymbol('proto.LeaveChannelRequest', null, global);
 goog.exportSymbol('proto.LeaveChannelResponse', null, global);
+goog.exportSymbol('proto.Personality', null, global);
 goog.exportSymbol('proto.ReadyState', null, global);
 goog.exportSymbol('proto.StartTmiRequest', null, global);
 goog.exportSymbol('proto.StartTmiResponse', null, global);
@@ -1972,6 +1973,17 @@ proto.GetJoinedChannelsResponse.prototype.clearChannelsList = function() {
   return this.setChannelsList([]);
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.Personality = {
+  UNKNOWN: 0,
+  CHAD: 1,
+  HELPFUL: 2,
+  SHY: 3,
+  UWU: 4
+};
 
 /**
  * @enum {number}

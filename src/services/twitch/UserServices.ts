@@ -5,7 +5,7 @@ import UrlBuilder, {TwitchUserEndPoints} from '../../utils/UrlBuilder'
  * @param session: Session object from next-auth
  */
 export const botJoined = async (twitchUserData: TwitchUserData): Promise<boolean> => {
-  const urlBuilder = new UrlBuilder().channel(twitchUserData?.displayName)
+  const urlBuilder = new UrlBuilder().channel(twitchUserData?.username)
   urlBuilder.twitch(TwitchUserEndPoints.joined)
   try {
     const res = await fetch(urlBuilder.build())

@@ -53,7 +53,7 @@ const BotSwitch = ({online, setOnline}: BotSwitchProps) => {
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked
-    const displayName = loginContext.profile?.displayName
+    const displayName = loginContext.profile?.username
     const sub = loginContext.profile?.id
     console.log('Switch pressed! checked:', checked)
     if (!displayName || !sub) {

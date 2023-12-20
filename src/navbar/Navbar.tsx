@@ -18,13 +18,33 @@ const ListLinkItemButton = styled(({href, ...otherProps}: StyledNavLinkProps) =>
 `
 
 const checkIfLoggedIn = async (): Promise<boolean> => {
+  // define request object
+  const requestData: RequestInit = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  }
+
   // check if logged in
   const urlBuilder = new UrlBuilder().auth(AuthEndPoints.twitch).checkLoggedIn().build()
-  const res = await fetch(urlBuilder, {
-    credentials: 'include',
-  })
+  const res = await fetch(urlBuilder, requestData)
   const data = await res.json()
   console.log('finished checkinged if logged in', data)
+  if (data.refetch) {
+    // try to login again
+    const refetchRes = await fetch(urlBuilder, {
+      ...requestData,
+      body: JSON.stringify({
+        refetch: true,
+      }),
+    })
+    const refetchData = await refetchRes.json()
+    console.log('finished refetching', refetchData)
+    return refetchData.loggedIn
+  }
+
   return data.loggedIn
 }
 
@@ -81,7 +101,7 @@ const Navbar = ({style}: NavbarProps) => {
       <ListLinkItemButton href="/about">About</ListLinkItemButton>
       <ListLinkItemButton href="/chatbot">Chat Bot</ListLinkItemButton>
       <ListLinkItemButton href="/contact">Contact</ListLinkItemButton>
-      {loginContext?.profile?.displayName == 'therealchadgpt' && (
+      {loginContext?.profile?.username == 'therealchadgpt' && (
         <ListLinkItemButton href="/admin">Admin</ListLinkItemButton>
       )}
       <SignInProfileChunk />

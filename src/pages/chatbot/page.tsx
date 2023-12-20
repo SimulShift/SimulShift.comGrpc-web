@@ -13,7 +13,7 @@ const ChatBotPage = () => {
   return (
     <Container maxWidth="md">
       <Typography level="h3" m={5}>
-        {loginContext?.profile?.displayName + "'s Chat Bot Control Room"}
+        {loginContext?.profile?.username + "'s Chat Bot Control Room"}
       </Typography>
       <ControlPanel />
     </Container>
