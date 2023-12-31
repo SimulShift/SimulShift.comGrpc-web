@@ -4,8 +4,13 @@ import {Switch, Tooltip} from '@mui/joy'
 import {redirect} from 'react-router-dom'
 import UrlBuilder, {AuthEndPoints} from '../../../utils/UrlBuilder'
 import {useLoginContext} from '../../../auth/LoginContext'
-import {checkJoinedrpc, joinChannelRpc, leaveChannelRpc} from '../../../services/TwitchServices'
-import {BotSwitchProps, SwitchContainerProps} from './BotSwitchContainer'
+import {
+  checkJoinedrpc,
+  joinChannelRpc,
+  leaveChannelRpc,
+  setReplyToAllRpc,
+} from '../../../services/TwitchServices'
+import {BotSwitchProps} from './BotSwitchContainer'
 
 const activeToggle = 'Your Chatbot is Online! Give chad  a command in your twitch channel'
 const inactiveToggle =
@@ -32,49 +37,21 @@ export const MuiSwitchLarge = styled(Switch)(({theme}) => ({
   },
 }))
 
-const BotSwitch = ({status, setStatus}: BotSwitchProps) => {
+const ReplyToAllSwitch = ({status, setStatus}: BotSwitchProps) => {
   const loginContext = useLoginContext()
   const defaultActiveToggle = activeToggle ?? 'Switched On'
   const defaultInactiveToggle = inactiveToggle ?? 'Switched Off'
-
-  /* TODO: Delete this code once verified working without
-  const loginContext = useLoginContext()
-  const botOnline = async () => {
-    try {
-      const displayName = loginContext.profile?.username
-      const sub = loginContext.profile?.id
-      if (!displayName || !sub) return
-      setStatus(await checkJoined(displayName, sub))
-    } catch (err) {
-      console.log('Error checking if joined:', err)
-    }
-  }
-
-  useEffect(() => {
-    botOnline()
-  }, [])
-  */
-
-  useEffect(() => {
-    // Check if the sessionId and profile cookies exist
-    if (!loginContext.profile || !loginContext.loggedIn) {
-      // If either of the cookies is missing, redirect the user to the login page
-      const loginUrl = new UrlBuilder().auth(AuthEndPoints.twitch).build()
-      redirect(loginUrl)
-    }
-    checkJoinedrpc(setStatus)
-  }, [])
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked
     const displayName = loginContext.profile?.username
     const sub = loginContext.profile?.id
-    console.log('Switch pressed! checked:', checked)
+    console.log('ReplyToAll Switch pressed! checked:', checked)
     if (!displayName || !sub) {
       console.log('Missing displayName or sub!')
       return
     }
-    checked ? joinChannelRpc(setStatus) : leaveChannelRpc(setStatus)
+    setReplyToAllRpc(setStatus, checked)
   }
 
   return (
@@ -83,4 +60,4 @@ const BotSwitch = ({status, setStatus}: BotSwitchProps) => {
     </Tooltip>
   )
 }
-export default BotSwitch
+export default ReplyToAllSwitch

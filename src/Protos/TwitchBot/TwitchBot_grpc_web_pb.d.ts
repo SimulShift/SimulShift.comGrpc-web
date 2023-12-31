@@ -1,6 +1,7 @@
 import * as grpcWeb from 'grpc-web';
 
 import * as TwitchBot_pb from './TwitchBot_pb'; // proto import: "TwitchBot.proto"
+import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb'; // proto import: "google/protobuf/empty.proto"
 
 
 export class TwitchBotServiceClient {
@@ -28,6 +29,13 @@ export class TwitchBotServiceClient {
     callback: (err: grpcWeb.RpcError,
                response: TwitchBot_pb.LeaveChannelResponse) => void
   ): grpcWeb.ClientReadableStream<TwitchBot_pb.LeaveChannelResponse>;
+
+  setReplyToAll(
+    request: TwitchBot_pb.SetReplyToAllRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
 }
 
@@ -85,6 +93,11 @@ export class TwitchBotServicePromiseClient {
     request: TwitchBot_pb.LeaveChannelRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<TwitchBot_pb.LeaveChannelResponse>;
+
+  setReplyToAll(
+    request: TwitchBot_pb.SetReplyToAllRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<google_protobuf_empty_pb.Empty>;
 
 }
 

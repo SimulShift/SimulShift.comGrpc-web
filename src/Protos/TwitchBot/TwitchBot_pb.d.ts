@@ -1,5 +1,6 @@
 import * as jspb from 'google-protobuf'
 
+import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb'; // proto import: "google/protobuf/empty.proto"
 
 
 export class CheckJoinedRequest extends jspb.Message {
@@ -95,6 +96,24 @@ export class LeaveChannelResponse extends jspb.Message {
 export namespace LeaveChannelResponse {
   export type AsObject = {
     readystate: ReadyState,
+  }
+}
+
+export class SetReplyToAllRequest extends jspb.Message {
+  getReplytoall(): boolean;
+  setReplytoall(value: boolean): SetReplyToAllRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SetReplyToAllRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SetReplyToAllRequest): SetReplyToAllRequest.AsObject;
+  static serializeBinaryToWriter(message: SetReplyToAllRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SetReplyToAllRequest;
+  static deserializeBinaryFromReader(message: SetReplyToAllRequest, reader: jspb.BinaryReader): SetReplyToAllRequest;
+}
+
+export namespace SetReplyToAllRequest {
+  export type AsObject = {
+    replytoall: boolean,
   }
 }
 

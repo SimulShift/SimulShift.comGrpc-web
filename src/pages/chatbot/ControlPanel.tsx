@@ -6,7 +6,10 @@ import CreatePersonalityComponent from './components/CreatePersonalityComponent'
 import CommandComponent from './components/CommandComponent'
 import StatisticsComponent from './components/StatisticsComponent'
 import DirectionsComponent from './components/DirectionsComponent'
-import JoinSwitch from './components/JoinSwitch'
+import BotSwitchContainer from './components/BotSwitchContainer'
+import BotSwitch from './components/BotSwitch'
+import {Personality} from '../../Protos/TwitchBot/TwitchBot_pb'
+import ReplyToAllSwitch from './components/ReplyToAllSwitch'
 
 const DraggableBox = styled(Box)(() => ({
   cursor: 'grab',
@@ -18,6 +21,7 @@ const DraggableBox = styled(Box)(() => ({
 const ControlPanel = () => {
   const [items, setItems] = useState<string[]>([
     'Toggle',
+    'ReplyToAll',
     'Select',
     'History',
     'Create',
@@ -26,8 +30,37 @@ const ControlPanel = () => {
     'Directions',
   ])
 
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
   const draggedIndexRef = useRef<number | null>(null)
   const hoverIndexRef = useRef<number | null>(null)
+
+  const getDraggableBoxStyle = (index: number) => {
+    const isDragging = draggedIndexRef.current === index
+    const isHovered = hoveredIndex === index
+
+    const baseStyle = {
+      color: 'black',
+      backgroundColor: 'rgba(92,59,146,1)',
+      padding: '16px',
+      borderRadius: '8px',
+      boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+    }
+
+    if (isDragging) {
+      return {
+        ...baseStyle,
+        border: '2px dashed #2196F3', // Style for dragging element
+      }
+    } else if (isHovered) {
+      return {
+        ...baseStyle,
+        backgroundColor: 'rgba(144,125,175,1)', // Style for hovered element
+      }
+    }
+
+    return baseStyle // Default style for other elements
+  }
 
   const handleDragStart = (index: number) => () => {
     draggedIndexRef.current = index
@@ -35,6 +68,7 @@ const ControlPanel = () => {
 
   const handleDragOver = (index: number) => (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault()
+    setHoveredIndex(index)
     hoverIndexRef.current = index
   }
 
@@ -45,6 +79,7 @@ const ControlPanel = () => {
       reorderedItems.splice(index, 0, draggedItem)
       setItems(reorderedItems)
     }
+    setHoveredIndex(null)
     draggedIndexRef.current = null
     hoverIndexRef.current = null
   }
@@ -65,8 +100,21 @@ const ControlPanel = () => {
   const dynamicComponent = (item: string) => {
     switch (item) {
       case 'Toggle':
-        //return <ToggleComponent />
-        return <JoinSwitch />
+        return (
+          <BotSwitchContainer
+            SwitchComponent={BotSwitch}
+            personality={Personality.UWU}
+            statusMsg="botOnline:"
+          />
+        )
+      case 'ReplyToAll':
+        return (
+          <BotSwitchContainer
+            SwitchComponent={ReplyToAllSwitch}
+            personality={Personality.UWU}
+            statusMsg="Replying To All: "
+          />
+        )
       case 'Select':
         return <SelectPersonalityComponent />
       case 'History':
@@ -93,20 +141,8 @@ const ControlPanel = () => {
             onDragStart={handleDragStart(index)}
             onDragOver={handleDragOver(index)}
             onDrop={handleDrop(index)}
-            className={`draggable-box${draggedIndexRef.current === index ? ' dragging' : ''}${
-              hoverIndexRef.current === index ? ' hovering' : ''
-            }`}
-            style={{breakInside: 'avoid-column'}}>
-            <DraggableBox
-              sx={{
-                color: 'black',
-                backgroundColor: item === 'Toggle' ? '' : '#e2e2e2',
-                padding: '16px',
-                borderRadius: '8px',
-                boxShadow: item === 'Toggle' ? '' : '0px 2px 4px rgba(0, 0, 0, 0.1)',
-              }}>
-              {dynamicComponent(item)}
-            </DraggableBox>
+            style={{breakInside: 'avoid-column', width: '100%', height: '100%'}}>
+            <DraggableBox sx={getDraggableBoxStyle(index)}>{dynamicComponent(item)}</DraggableBox>
           </div>
         </Grid>
       ))}

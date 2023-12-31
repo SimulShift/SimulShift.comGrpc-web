@@ -19,6 +19,8 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
+
+var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
 const proto = require('./TwitchBot_pb.js');
 
 /**
@@ -253,6 +255,67 @@ proto.TwitchBotServicePromiseClient.prototype.leaveChannel =
       request,
       metadata || {},
       methodDescriptor_TwitchBotService_leaveChannel);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.SetReplyToAllRequest,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_TwitchBotService_setReplyToAll = new grpc.web.MethodDescriptor(
+  '/TwitchBotService/setReplyToAll',
+  grpc.web.MethodType.UNARY,
+  proto.SetReplyToAllRequest,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.SetReplyToAllRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.SetReplyToAllRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.TwitchBotServiceClient.prototype.setReplyToAll =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/TwitchBotService/setReplyToAll',
+      request,
+      metadata || {},
+      methodDescriptor_TwitchBotService_setReplyToAll,
+      callback);
+};
+
+
+/**
+ * @param {!proto.SetReplyToAllRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.TwitchBotServicePromiseClient.prototype.setReplyToAll =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/TwitchBotService/setReplyToAll',
+      request,
+      metadata || {},
+      methodDescriptor_TwitchBotService_setReplyToAll);
 };
 
 

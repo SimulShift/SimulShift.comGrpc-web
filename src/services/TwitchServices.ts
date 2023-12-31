@@ -8,6 +8,7 @@ import {
   JoinChannelRequest,
   LeaveChannelRequest,
   ReadyState,
+  SetReplyToAllRequest,
   StartTmiRequest,
   TmiStatusRequest,
 } from '../Protos/TwitchBot/TwitchBot_pb'
@@ -124,12 +125,26 @@ export const joinChannelRpc = async (setOnline: (online: boolean) => void) => {
   }
 }
 
-export const leaveChannelRpc = async (setOnline: (online: boolean) => void) => {
+export const leaveChannelRpc = async (setStatus: (status: boolean) => void) => {
   try {
     const res = await twitchBotServiceClient.leaveChannel(new LeaveChannelRequest())
     console.log('leaveChannel response', getEnumKey(ReadyState, res.getReadystate()))
-    setOnline(false)
+    setStatus(false)
   } catch (err) {
     console.log('error leaving channel:', err)
+  }
+}
+
+export const setReplyToAllRpc = async (
+  setStatus: (status: boolean) => void,
+  replyToAll: boolean,
+) => {
+  try {
+    const req = new SetReplyToAllRequest().setReplytoall(replyToAll)
+    const res = await twitchBotServiceClient.setReplyToAll(req)
+    setStatus(replyToAll)
+    console.log('setReplyToAll response', getEnumKey(ReadyState, res.getReadystate()))
+  } catch (err) {
+    console.log('error setting reply to all:', err)
   }
 }
