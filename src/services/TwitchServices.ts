@@ -3,7 +3,7 @@ import {RpcError, StatusCode} from 'grpc-web'
 import {
   TwitchBotAdminServicePromiseClient,
   TwitchBotServicePromiseClient,
-} from '../Protos/TwitchBot/TwitchBot_grpc_web_pb'
+} from '../Protos/TwitchBot_grpc_web_pb'
 import {
   JoinChannelRequest,
   LeaveChannelRequest,
@@ -11,8 +11,9 @@ import {
   SetReplyToAllRequest,
   StartTmiRequest,
   TmiStatusRequest,
-} from '../Protos/TwitchBot/TwitchBot_pb'
+} from '../Protos/TwitchBot_pb'
 import {getEnumKey} from '../utils/EnumTools'
+import {Empty} from '../Protos/Common_pb'
 
 /* ============================================= */
 /* =========== TwitchBotAdminService =========== */
@@ -105,11 +106,9 @@ var twitchBotServiceClient = new TwitchBotServicePromiseClient(
   },
 )
 
-export const checkJoinedrpc = async (setOnline: (online: boolean) => void) => {
+export const getPersonas = async () => {
   try {
-    const res = await twitchBotServiceClient.checkJoined(new JoinChannelRequest())
-    console.log('checkJoined response', res.getJoined())
-    setOnline(res.getJoined())
+    return await twitchBotServiceClient.getPersonaDataForUser(new Empty())
   } catch (err) {
     console.log('error checking joined:', err)
   }
@@ -141,9 +140,8 @@ export const setReplyToAllRpc = async (
 ) => {
   try {
     const req = new SetReplyToAllRequest().setReplytoall(replyToAll)
-    const res = await twitchBotServiceClient.setReplyToAll(req)
+    await twitchBotServiceClient.setReplyToAll(req)
     setStatus(replyToAll)
-    console.log('setReplyToAll response', getEnumKey(ReadyState, res.getReadystate()))
   } catch (err) {
     console.log('error setting reply to all:', err)
   }

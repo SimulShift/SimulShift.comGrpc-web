@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import BotStatus from './SwitchStatus'
 import {Box} from '@mui/joy'
-import {Personality} from '../../../Protos/TwitchBot/TwitchBot_pb'
+import {Personality} from '../../../Protos/TwitchBot_pb'
 
 // Define the props interface
 export interface SwitchContainerProps {

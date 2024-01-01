@@ -5,7 +5,7 @@ import {redirect} from 'react-router-dom'
 import UrlBuilder, {AuthEndPoints} from '../../../utils/UrlBuilder'
 import {useLoginContext} from '../../../auth/LoginContext'
 import {
-  checkJoinedrpc,
+  getPersonas,
   joinChannelRpc,
   leaveChannelRpc,
   setReplyToAllRpc,

@@ -20,7 +20,7 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
-var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
+var Common_pb = require('./Common_pb.js')
 const proto = require('./TwitchBot_pb.js');
 
 /**
@@ -78,61 +78,61 @@ proto.TwitchBotServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.CheckJoinedRequest,
- *   !proto.CheckJoinedResponse>}
+ *   !proto.Empty,
+ *   !proto.GetPersonaDataForUserResponse>}
  */
-const methodDescriptor_TwitchBotService_checkJoined = new grpc.web.MethodDescriptor(
-  '/TwitchBotService/checkJoined',
+const methodDescriptor_TwitchBotService_getPersonaDataForUser = new grpc.web.MethodDescriptor(
+  '/TwitchBotService/getPersonaDataForUser',
   grpc.web.MethodType.UNARY,
-  proto.CheckJoinedRequest,
-  proto.CheckJoinedResponse,
+  Common_pb.Empty,
+  proto.GetPersonaDataForUserResponse,
   /**
-   * @param {!proto.CheckJoinedRequest} request
+   * @param {!proto.Empty} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.CheckJoinedResponse.deserializeBinary
+  proto.GetPersonaDataForUserResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.CheckJoinedRequest} request The
+ * @param {!proto.Empty} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.CheckJoinedResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.GetPersonaDataForUserResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.CheckJoinedResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.GetPersonaDataForUserResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.TwitchBotServiceClient.prototype.checkJoined =
+proto.TwitchBotServiceClient.prototype.getPersonaDataForUser =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/TwitchBotService/checkJoined',
+      '/TwitchBotService/getPersonaDataForUser',
       request,
       metadata || {},
-      methodDescriptor_TwitchBotService_checkJoined,
+      methodDescriptor_TwitchBotService_getPersonaDataForUser,
       callback);
 };
 
 
 /**
- * @param {!proto.CheckJoinedRequest} request The
+ * @param {!proto.Empty} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.CheckJoinedResponse>}
+ * @return {!Promise<!proto.GetPersonaDataForUserResponse>}
  *     Promise that resolves to the response
  */
-proto.TwitchBotServicePromiseClient.prototype.checkJoined =
+proto.TwitchBotServicePromiseClient.prototype.getPersonaDataForUser =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/TwitchBotService/checkJoined',
+      '/TwitchBotService/getPersonaDataForUser',
       request,
       metadata || {},
-      methodDescriptor_TwitchBotService_checkJoined);
+      methodDescriptor_TwitchBotService_getPersonaDataForUser);
 };
 
 
@@ -262,13 +262,13 @@ proto.TwitchBotServicePromiseClient.prototype.leaveChannel =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.SetReplyToAllRequest,
- *   !proto.google.protobuf.Empty>}
+ *   !proto.Empty>}
  */
 const methodDescriptor_TwitchBotService_setReplyToAll = new grpc.web.MethodDescriptor(
   '/TwitchBotService/setReplyToAll',
   grpc.web.MethodType.UNARY,
   proto.SetReplyToAllRequest,
-  google_protobuf_empty_pb.Empty,
+  Common_pb.Empty,
   /**
    * @param {!proto.SetReplyToAllRequest} request
    * @return {!Uint8Array}
@@ -276,7 +276,7 @@ const methodDescriptor_TwitchBotService_setReplyToAll = new grpc.web.MethodDescr
   function(request) {
     return request.serializeBinary();
   },
-  google_protobuf_empty_pb.Empty.deserializeBinary
+  Common_pb.Empty.deserializeBinary
 );
 
 
@@ -285,9 +285,9 @@ const methodDescriptor_TwitchBotService_setReplyToAll = new grpc.web.MethodDescr
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.google.protobuf.Empty)}
+ * @param {function(?grpc.web.RpcError, ?proto.Empty)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.TwitchBotServiceClient.prototype.setReplyToAll =
@@ -306,7 +306,7 @@ proto.TwitchBotServiceClient.prototype.setReplyToAll =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.google.protobuf.Empty>}
+ * @return {!Promise<!proto.Empty>}
  *     Promise that resolves to the response
  */
 proto.TwitchBotServicePromiseClient.prototype.setReplyToAll =

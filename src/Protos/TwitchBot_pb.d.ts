@@ -1,37 +1,65 @@
 import * as jspb from 'google-protobuf'
 
-import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb'; // proto import: "google/protobuf/empty.proto"
+import * as Common_pb from './Common_pb'; // proto import: "Common.proto"
 
 
-export class CheckJoinedRequest extends jspb.Message {
+export class Persona extends jspb.Message {
+  getId(): number;
+  setId(value: number): Persona;
+
+  getTwitchId(): number;
+  setTwitchId(value: number): Persona;
+
+  getOnline(): boolean;
+  setOnline(value: boolean): Persona;
+
+  getCommandsList(): Array<string>;
+  setCommandsList(value: Array<string>): Persona;
+  clearCommandsList(): Persona;
+  addCommands(value: string, index?: number): Persona;
+
+  getPersonality(): number;
+  setPersonality(value: number): Persona;
+
+  getReplyToAll(): boolean;
+  setReplyToAll(value: boolean): Persona;
+
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CheckJoinedRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: CheckJoinedRequest): CheckJoinedRequest.AsObject;
-  static serializeBinaryToWriter(message: CheckJoinedRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CheckJoinedRequest;
-  static deserializeBinaryFromReader(message: CheckJoinedRequest, reader: jspb.BinaryReader): CheckJoinedRequest;
+  toObject(includeInstance?: boolean): Persona.AsObject;
+  static toObject(includeInstance: boolean, msg: Persona): Persona.AsObject;
+  static serializeBinaryToWriter(message: Persona, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Persona;
+  static deserializeBinaryFromReader(message: Persona, reader: jspb.BinaryReader): Persona;
 }
 
-export namespace CheckJoinedRequest {
+export namespace Persona {
   export type AsObject = {
+    id: number,
+    twitchId: number,
+    online: boolean,
+    commandsList: Array<string>,
+    personality: number,
+    replyToAll: boolean,
   }
 }
 
-export class CheckJoinedResponse extends jspb.Message {
-  getJoined(): boolean;
-  setJoined(value: boolean): CheckJoinedResponse;
+export class GetPersonaDataForUserResponse extends jspb.Message {
+  getPersonasList(): Array<Persona>;
+  setPersonasList(value: Array<Persona>): GetPersonaDataForUserResponse;
+  clearPersonasList(): GetPersonaDataForUserResponse;
+  addPersonas(value?: Persona, index?: number): Persona;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CheckJoinedResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: CheckJoinedResponse): CheckJoinedResponse.AsObject;
-  static serializeBinaryToWriter(message: CheckJoinedResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CheckJoinedResponse;
-  static deserializeBinaryFromReader(message: CheckJoinedResponse, reader: jspb.BinaryReader): CheckJoinedResponse;
+  toObject(includeInstance?: boolean): GetPersonaDataForUserResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetPersonaDataForUserResponse): GetPersonaDataForUserResponse.AsObject;
+  static serializeBinaryToWriter(message: GetPersonaDataForUserResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetPersonaDataForUserResponse;
+  static deserializeBinaryFromReader(message: GetPersonaDataForUserResponse, reader: jspb.BinaryReader): GetPersonaDataForUserResponse;
 }
 
-export namespace CheckJoinedResponse {
+export namespace GetPersonaDataForUserResponse {
   export type AsObject = {
-    joined: boolean,
+    personasList: Array<Persona.AsObject>,
   }
 }
 
@@ -103,6 +131,9 @@ export class SetReplyToAllRequest extends jspb.Message {
   getReplytoall(): boolean;
   setReplytoall(value: boolean): SetReplyToAllRequest;
 
+  getPersonality(): Personality;
+  setPersonality(value: Personality): SetReplyToAllRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SetReplyToAllRequest.AsObject;
   static toObject(includeInstance: boolean, msg: SetReplyToAllRequest): SetReplyToAllRequest.AsObject;
@@ -114,6 +145,7 @@ export class SetReplyToAllRequest extends jspb.Message {
 export namespace SetReplyToAllRequest {
   export type AsObject = {
     replytoall: boolean,
+    personality: Personality,
   }
 }
 

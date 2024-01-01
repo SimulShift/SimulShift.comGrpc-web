@@ -8,7 +8,7 @@ import StatisticsComponent from './components/StatisticsComponent'
 import DirectionsComponent from './components/DirectionsComponent'
 import BotSwitchContainer from './components/BotSwitchContainer'
 import BotSwitch from './components/BotSwitch'
-import {Personality} from '../../Protos/TwitchBot/TwitchBot_pb'
+import {Persona, Personality} from '../../Protos/TwitchBot_pb'
 import ReplyToAllSwitch from './components/ReplyToAllSwitch'
 
 const DraggableBox = styled(Box)(() => ({
@@ -18,18 +18,59 @@ const DraggableBox = styled(Box)(() => ({
   },
 }))
 
-const ControlPanel = () => {
-  const [items, setItems] = useState<string[]>([
-    'Toggle',
-    'ReplyToAll',
-    'Select',
-    'History',
-    'Create',
-    'Command',
-    'Statistics',
-    'Directions',
-  ])
+// Define an enum for the items with the desired order
+enum ControlPanelItem {
+  Toggle = 'Toggle',
+  ReplyToAll = 'ReplyToAll',
+  Select = 'Select',
+  History = 'History',
+  Create = 'Create',
+  Command = 'Command',
+  Statistics = 'Statistics',
+  Directions = 'Directions',
+}
 
+const dynamicComponent = (item: ControlPanelItem, persona: Persona) => {
+  switch (item) {
+    case ControlPanelItem.Toggle:
+      return (
+        <BotSwitchContainer
+          SwitchComponent={BotSwitch}
+          personality={persona.getPersonality()}
+          statusMsg="botOnline:"
+        />
+      )
+    case ControlPanelItem.ReplyToAll:
+      return (
+        <BotSwitchContainer
+          SwitchComponent={ReplyToAllSwitch}
+          personality={Personality.UWU}
+          statusMsg="Replying To All: "
+        />
+      )
+    case ControlPanelItem.Select:
+      return <SelectPersonalityComponent />
+    case ControlPanelItem.History:
+      return <HistoryComponent />
+    case ControlPanelItem.Create:
+      return <CreatePersonalityComponent />
+    case ControlPanelItem.Command:
+      return <CommandComponent />
+    case ControlPanelItem.Statistics:
+      return <StatisticsComponent />
+    case ControlPanelItem.Directions:
+      return <DirectionsComponent />
+    default:
+      return item
+  }
+}
+
+type ControlPanelProps = {
+  persona: Persona
+}
+
+const ControlPanel = ({persona}: ControlPanelProps) => {
+  const [items, setItems] = useState<ControlPanelItem[]>(Object.values(ControlPanelItem))
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   const draggedIndexRef = useRef<number | null>(null)
@@ -97,41 +138,6 @@ const ControlPanel = () => {
     }
   }, [])
 
-  const dynamicComponent = (item: string) => {
-    switch (item) {
-      case 'Toggle':
-        return (
-          <BotSwitchContainer
-            SwitchComponent={BotSwitch}
-            personality={Personality.UWU}
-            statusMsg="botOnline:"
-          />
-        )
-      case 'ReplyToAll':
-        return (
-          <BotSwitchContainer
-            SwitchComponent={ReplyToAllSwitch}
-            personality={Personality.UWU}
-            statusMsg="Replying To All: "
-          />
-        )
-      case 'Select':
-        return <SelectPersonalityComponent />
-      case 'History':
-        return <HistoryComponent />
-      case 'Create':
-        return <CreatePersonalityComponent />
-      case 'Command':
-        return <CommandComponent />
-      case 'Statistics':
-        return <StatisticsComponent />
-      case 'Directions':
-        return <DirectionsComponent />
-      default:
-        return item
-    }
-  }
-
   return (
     <Grid container spacing={2}>
       {items.map((item, index) => (
@@ -142,7 +148,9 @@ const ControlPanel = () => {
             onDragOver={handleDragOver(index)}
             onDrop={handleDrop(index)}
             style={{breakInside: 'avoid-column', width: '100%', height: '100%'}}>
-            <DraggableBox sx={getDraggableBoxStyle(index)}>{dynamicComponent(item)}</DraggableBox>
+            <DraggableBox sx={getDraggableBoxStyle(index)}>
+              {dynamicComponent(item, persona)}
+            </DraggableBox>
           </div>
         </Grid>
       ))}

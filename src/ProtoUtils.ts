@@ -1,4 +1,4 @@
-import {Personality} from './TwitchBot/TwitchBot_pb'
+import {Personality} from './Protos/TwitchBot_pb'
 
 export const mapPersonalityToString = (personality: Personality) => {
   switch (personality) {

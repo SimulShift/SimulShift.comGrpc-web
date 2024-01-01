@@ -1,6 +1,6 @@
 import {Typography} from '@mui/joy'
-import {Personality} from '../../../Protos/TwitchBot/TwitchBot_pb'
-import {mapPersonalityToString} from '../../../Protos/ProtoUtils'
+import {Personality} from '../../../Protos/TwitchBot_pb'
+import {mapPersonalityToString} from '../../../ProtoUtils'
 
 type BotStatusProps = {
   status: boolean

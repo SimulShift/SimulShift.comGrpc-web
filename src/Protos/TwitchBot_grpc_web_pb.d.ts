@@ -1,7 +1,7 @@
 import * as grpcWeb from 'grpc-web';
 
+import * as Common_pb from './Common_pb'; // proto import: "Common.proto"
 import * as TwitchBot_pb from './TwitchBot_pb'; // proto import: "TwitchBot.proto"
-import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb'; // proto import: "google/protobuf/empty.proto"
 
 
 export class TwitchBotServiceClient {
@@ -9,12 +9,12 @@ export class TwitchBotServiceClient {
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
-  checkJoined(
-    request: TwitchBot_pb.CheckJoinedRequest,
+  getPersonaDataForUser(
+    request: Common_pb.Empty,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: TwitchBot_pb.CheckJoinedResponse) => void
-  ): grpcWeb.ClientReadableStream<TwitchBot_pb.CheckJoinedResponse>;
+               response: TwitchBot_pb.GetPersonaDataForUserResponse) => void
+  ): grpcWeb.ClientReadableStream<TwitchBot_pb.GetPersonaDataForUserResponse>;
 
   joinChannel(
     request: TwitchBot_pb.JoinChannelRequest,
@@ -34,8 +34,8 @@ export class TwitchBotServiceClient {
     request: TwitchBot_pb.SetReplyToAllRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: google_protobuf_empty_pb.Empty) => void
-  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+               response: Common_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<Common_pb.Empty>;
 
 }
 
@@ -79,10 +79,10 @@ export class TwitchBotServicePromiseClient {
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
-  checkJoined(
-    request: TwitchBot_pb.CheckJoinedRequest,
+  getPersonaDataForUser(
+    request: Common_pb.Empty,
     metadata?: grpcWeb.Metadata
-  ): Promise<TwitchBot_pb.CheckJoinedResponse>;
+  ): Promise<TwitchBot_pb.GetPersonaDataForUserResponse>;
 
   joinChannel(
     request: TwitchBot_pb.JoinChannelRequest,
@@ -97,7 +97,7 @@ export class TwitchBotServicePromiseClient {
   setReplyToAll(
     request: TwitchBot_pb.SetReplyToAllRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<google_protobuf_empty_pb.Empty>;
+  ): Promise<Common_pb.Empty>;
 
 }
 
