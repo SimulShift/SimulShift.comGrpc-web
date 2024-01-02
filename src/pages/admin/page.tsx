@@ -2,7 +2,7 @@ import TmiSwitch from './TmiSwitch'
 import TmiStatus from './TmiStatus'
 import {useEffect, useState} from 'react'
 import {useLoginContext} from '../../auth/LoginContext'
-import {getJoinedChannelsRpc, getTmiStatusRpc} from '../../services/TwitchServices'
+import {getJoinedChannelsRpc, getTmiStatusRpc} from '../../services/twitch/TwitchBotAdminService'
 import {List, ListItem, Typography} from '@mui/joy'
 
 const Admin = () => {

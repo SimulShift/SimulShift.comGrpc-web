@@ -1,7 +1,7 @@
 import * as grpcWeb from 'grpc-web';
 
-import * as Common_pb from './Common_pb'; // proto import: "Common.proto"
 import * as TwitchBot_pb from './TwitchBot_pb'; // proto import: "TwitchBot.proto"
+import * as Common_pb from './Common_pb'; // proto import: "Common.proto"
 
 
 export class TwitchBotServiceClient {
@@ -27,8 +27,8 @@ export class TwitchBotServiceClient {
     request: TwitchBot_pb.LeaveChannelRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: TwitchBot_pb.LeaveChannelResponse) => void
-  ): grpcWeb.ClientReadableStream<TwitchBot_pb.LeaveChannelResponse>;
+               response: Common_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<Common_pb.Empty>;
 
   setReplyToAll(
     request: TwitchBot_pb.SetReplyToAllRequest,
@@ -36,6 +36,13 @@ export class TwitchBotServiceClient {
     callback: (err: grpcWeb.RpcError,
                response: Common_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<Common_pb.Empty>;
+
+  createPersona(
+    request: TwitchBot_pb.CreatePersonaRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: TwitchBot_pb.Persona) => void
+  ): grpcWeb.ClientReadableStream<TwitchBot_pb.Persona>;
 
 }
 
@@ -92,12 +99,17 @@ export class TwitchBotServicePromiseClient {
   leaveChannel(
     request: TwitchBot_pb.LeaveChannelRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<TwitchBot_pb.LeaveChannelResponse>;
+  ): Promise<Common_pb.Empty>;
 
   setReplyToAll(
     request: TwitchBot_pb.SetReplyToAllRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<Common_pb.Empty>;
+
+  createPersona(
+    request: TwitchBot_pb.CreatePersonaRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<TwitchBot_pb.Persona>;
 
 }
 

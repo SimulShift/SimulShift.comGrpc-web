@@ -1,23 +1,29 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import BotStatus from './SwitchStatus'
 import {Box} from '@mui/joy'
-import {Personality} from '../../../Protos/TwitchBot_pb'
+import {Persona, Personality} from '../../../Protos/TwitchBot_pb'
 
 // Define the props interface
 export interface SwitchContainerProps {
   SwitchComponent: React.ComponentType<BotSwitchProps>
-  personality: Personality
+  persona: Persona
   statusMsg: string
+  initialStatus: boolean
 }
 
 export interface BotSwitchProps {
   status: boolean
   setStatus: React.Dispatch<React.SetStateAction<boolean>>
-  personality: Personality
+  persona: Persona
 }
 
-const BotSwitchContainer = ({SwitchComponent, personality, statusMsg}: SwitchContainerProps) => {
-  const [status, setStatus] = useState<boolean>(false)
+const BotSwitchContainer = ({
+  SwitchComponent,
+  persona,
+  statusMsg,
+  initialStatus,
+}: SwitchContainerProps) => {
+  const [status, setStatus] = useState<boolean>(initialStatus)
 
   return (
     <Box
@@ -26,8 +32,8 @@ const BotSwitchContainer = ({SwitchComponent, personality, statusMsg}: SwitchCon
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-      <BotStatus status={status} statusText={statusMsg} personality={personality} />
-      <SwitchComponent status={status} setStatus={setStatus} personality={personality} />
+      <BotStatus status={status} statusText={statusMsg} personality={persona.getPersonality()} />
+      <SwitchComponent status={status} setStatus={setStatus} persona={persona} />
     </Box>
   )
 }

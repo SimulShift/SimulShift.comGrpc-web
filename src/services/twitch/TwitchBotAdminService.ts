@@ -3,7 +3,7 @@ import {RpcError, StatusCode} from 'grpc-web'
 import {
   TwitchBotAdminServicePromiseClient,
   TwitchBotServicePromiseClient,
-} from '../Protos/TwitchBot_grpc_web_pb'
+} from '../../Protos/TwitchBot_grpc_web_pb'
 import {
   JoinChannelRequest,
   LeaveChannelRequest,
@@ -11,9 +11,9 @@ import {
   SetReplyToAllRequest,
   StartTmiRequest,
   TmiStatusRequest,
-} from '../Protos/TwitchBot_pb'
-import {getEnumKey} from '../utils/EnumTools'
-import {Empty} from '../Protos/Common_pb'
+} from '../../Protos/TwitchBot_pb'
+import {getEnumKey} from '../../utils/EnumTools'
+import {Empty} from '../../Protos/Common_pb'
 
 /* ============================================= */
 /* =========== TwitchBotAdminService =========== */
@@ -91,58 +91,5 @@ export const getJoinedChannelsRpc = async (
     } else {
       console.log('error getting joined channels:', err)
     }
-  }
-}
-
-/* ============================================= */
-/* ============= TwitchBotService ============== */
-/* ============================================= */
-
-var twitchBotServiceClient = new TwitchBotServicePromiseClient(
-  process.env.REACT_APP_GRPC_URL ?? 'localhost:8080',
-  null,
-  {
-    withCredentials: true,
-  },
-)
-
-export const getPersonas = async () => {
-  try {
-    return await twitchBotServiceClient.getPersonaDataForUser(new Empty())
-  } catch (err) {
-    console.log('error checking joined:', err)
-  }
-}
-
-export const joinChannelRpc = async (setOnline: (online: boolean) => void) => {
-  try {
-    const res = await twitchBotServiceClient.joinChannel(new JoinChannelRequest())
-    console.log('joinChannel response', getEnumKey(ReadyState, res.getReadystate()))
-    setOnline(true)
-  } catch (err) {
-    console.log('error joining channel:', err)
-  }
-}
-
-export const leaveChannelRpc = async (setStatus: (status: boolean) => void) => {
-  try {
-    const res = await twitchBotServiceClient.leaveChannel(new LeaveChannelRequest())
-    console.log('leaveChannel response', getEnumKey(ReadyState, res.getReadystate()))
-    setStatus(false)
-  } catch (err) {
-    console.log('error leaving channel:', err)
-  }
-}
-
-export const setReplyToAllRpc = async (
-  setStatus: (status: boolean) => void,
-  replyToAll: boolean,
-) => {
-  try {
-    const req = new SetReplyToAllRequest().setReplytoall(replyToAll)
-    await twitchBotServiceClient.setReplyToAll(req)
-    setStatus(replyToAll)
-  } catch (err) {
-    console.log('error setting reply to all:', err)
   }
 }

@@ -8,7 +8,7 @@ import StatisticsComponent from './components/StatisticsComponent'
 import DirectionsComponent from './components/DirectionsComponent'
 import BotSwitchContainer from './components/BotSwitchContainer'
 import BotSwitch from './components/BotSwitch'
-import {Persona, Personality} from '../../Protos/TwitchBot_pb'
+import {Persona} from '../../Protos/TwitchBot_pb'
 import ReplyToAllSwitch from './components/ReplyToAllSwitch'
 
 const DraggableBox = styled(Box)(() => ({
@@ -36,16 +36,18 @@ const dynamicComponent = (item: ControlPanelItem, persona: Persona) => {
       return (
         <BotSwitchContainer
           SwitchComponent={BotSwitch}
-          personality={persona.getPersonality()}
-          statusMsg="botOnline:"
+          persona={persona}
+          statusMsg="joined channel:"
+          initialStatus={persona.getOnline()}
         />
       )
     case ControlPanelItem.ReplyToAll:
       return (
         <BotSwitchContainer
           SwitchComponent={ReplyToAllSwitch}
-          personality={Personality.UWU}
+          persona={persona}
           statusMsg="Replying To All: "
+          initialStatus={persona.getReplyToAll()}
         />
       )
     case ControlPanelItem.Select:

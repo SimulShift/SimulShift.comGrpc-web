@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import {Switch, Tooltip} from '@mui/joy'
 import {useLoginContext} from '../../../auth/LoginContext'
-import {joinChannelRpc, leaveChannelRpc} from '../../../services/TwitchServices'
 import {BotSwitchProps} from './BotSwitchContainer'
+import {joinChannelRpc, leaveChannelRpc} from '../../../services/twitch/TwitchBotService'
 
 const activeToggle = 'Your Chatbot is Online! Give chad  a command in your twitch channel'
 const inactiveToggle =
@@ -29,7 +29,7 @@ export const MuiSwitchLarge = styled(Switch)(({theme}) => ({
   },
 }))
 
-const BotSwitch = ({status, setStatus}: BotSwitchProps) => {
+const BotSwitch = ({status, setStatus, persona}: BotSwitchProps) => {
   const loginContext = useLoginContext()
   const defaultActiveToggle = activeToggle ?? 'Switched On'
   const defaultInactiveToggle = inactiveToggle ?? 'Switched Off'
@@ -43,7 +43,9 @@ const BotSwitch = ({status, setStatus}: BotSwitchProps) => {
       console.log('Missing displayName or sub!')
       return
     }
-    checked ? joinChannelRpc(setStatus) : leaveChannelRpc(setStatus)
+    checked
+      ? joinChannelRpc(persona.getId(), setStatus)
+      : leaveChannelRpc(persona.getId(), setStatus)
   }
 
   return (

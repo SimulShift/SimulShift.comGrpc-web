@@ -18,11 +18,14 @@ export class Persona extends jspb.Message {
   clearCommandsList(): Persona;
   addCommands(value: string, index?: number): Persona;
 
-  getPersonality(): number;
-  setPersonality(value: number): Persona;
+  getPersonality(): Personality;
+  setPersonality(value: Personality): Persona;
 
   getReplyToAll(): boolean;
   setReplyToAll(value: boolean): Persona;
+
+  getName(): string;
+  setName(value: string): Persona;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Persona.AsObject;
@@ -38,8 +41,9 @@ export namespace Persona {
     twitchId: number,
     online: boolean,
     commandsList: Array<string>,
-    personality: number,
+    personality: Personality,
     replyToAll: boolean,
+    name: string,
   }
 }
 
@@ -64,6 +68,9 @@ export namespace GetPersonaDataForUserResponse {
 }
 
 export class JoinChannelRequest extends jspb.Message {
+  getPersonaid(): number;
+  setPersonaid(value: number): JoinChannelRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): JoinChannelRequest.AsObject;
   static toObject(includeInstance: boolean, msg: JoinChannelRequest): JoinChannelRequest.AsObject;
@@ -74,6 +81,7 @@ export class JoinChannelRequest extends jspb.Message {
 
 export namespace JoinChannelRequest {
   export type AsObject = {
+    personaid: number,
   }
 }
 
@@ -96,6 +104,9 @@ export namespace JoinChannelResponse {
 }
 
 export class LeaveChannelRequest extends jspb.Message {
+  getPersonaid(): number;
+  setPersonaid(value: number): LeaveChannelRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): LeaveChannelRequest.AsObject;
   static toObject(includeInstance: boolean, msg: LeaveChannelRequest): LeaveChannelRequest.AsObject;
@@ -106,6 +117,7 @@ export class LeaveChannelRequest extends jspb.Message {
 
 export namespace LeaveChannelRequest {
   export type AsObject = {
+    personaid: number,
   }
 }
 
@@ -145,6 +157,28 @@ export class SetReplyToAllRequest extends jspb.Message {
 export namespace SetReplyToAllRequest {
   export type AsObject = {
     replytoall: boolean,
+    personality: Personality,
+  }
+}
+
+export class CreatePersonaRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): CreatePersonaRequest;
+
+  getPersonality(): Personality;
+  setPersonality(value: Personality): CreatePersonaRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreatePersonaRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreatePersonaRequest): CreatePersonaRequest.AsObject;
+  static serializeBinaryToWriter(message: CreatePersonaRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreatePersonaRequest;
+  static deserializeBinaryFromReader(message: CreatePersonaRequest, reader: jspb.BinaryReader): CreatePersonaRequest;
+}
+
+export namespace CreatePersonaRequest {
+  export type AsObject = {
+    name: string,
     personality: Personality,
   }
 }

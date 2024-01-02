@@ -201,13 +201,13 @@ proto.TwitchBotServicePromiseClient.prototype.joinChannel =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.LeaveChannelRequest,
- *   !proto.LeaveChannelResponse>}
+ *   !proto.Empty>}
  */
 const methodDescriptor_TwitchBotService_leaveChannel = new grpc.web.MethodDescriptor(
   '/TwitchBotService/leaveChannel',
   grpc.web.MethodType.UNARY,
   proto.LeaveChannelRequest,
-  proto.LeaveChannelResponse,
+  Common_pb.Empty,
   /**
    * @param {!proto.LeaveChannelRequest} request
    * @return {!Uint8Array}
@@ -215,7 +215,7 @@ const methodDescriptor_TwitchBotService_leaveChannel = new grpc.web.MethodDescri
   function(request) {
     return request.serializeBinary();
   },
-  proto.LeaveChannelResponse.deserializeBinary
+  Common_pb.Empty.deserializeBinary
 );
 
 
@@ -224,9 +224,9 @@ const methodDescriptor_TwitchBotService_leaveChannel = new grpc.web.MethodDescri
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.LeaveChannelResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.Empty)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.LeaveChannelResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.TwitchBotServiceClient.prototype.leaveChannel =
@@ -245,7 +245,7 @@ proto.TwitchBotServiceClient.prototype.leaveChannel =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.LeaveChannelResponse>}
+ * @return {!Promise<!proto.Empty>}
  *     Promise that resolves to the response
  */
 proto.TwitchBotServicePromiseClient.prototype.leaveChannel =
@@ -316,6 +316,67 @@ proto.TwitchBotServicePromiseClient.prototype.setReplyToAll =
       request,
       metadata || {},
       methodDescriptor_TwitchBotService_setReplyToAll);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.CreatePersonaRequest,
+ *   !proto.Persona>}
+ */
+const methodDescriptor_TwitchBotService_createPersona = new grpc.web.MethodDescriptor(
+  '/TwitchBotService/createPersona',
+  grpc.web.MethodType.UNARY,
+  proto.CreatePersonaRequest,
+  proto.Persona,
+  /**
+   * @param {!proto.CreatePersonaRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.Persona.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.CreatePersonaRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.Persona)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.Persona>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.TwitchBotServiceClient.prototype.createPersona =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/TwitchBotService/createPersona',
+      request,
+      metadata || {},
+      methodDescriptor_TwitchBotService_createPersona,
+      callback);
+};
+
+
+/**
+ * @param {!proto.CreatePersonaRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.Persona>}
+ *     Promise that resolves to the response
+ */
+proto.TwitchBotServicePromiseClient.prototype.createPersona =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/TwitchBotService/createPersona',
+      request,
+      metadata || {},
+      methodDescriptor_TwitchBotService_createPersona);
 };
 
 

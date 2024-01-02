@@ -1,7 +1,7 @@
 import {Dispatch, SetStateAction} from 'react'
 import Switch from '@mui/joy/Switch'
 import {styled} from '@mui/joy/styles'
-import {startTmiRpc, stopTmiRpc} from '../../services/TwitchServices'
+import {startTmiRpc, stopTmiRpc} from '../../services/twitch/TwitchBotAdminService'
 
 export const MuiSwitchLarge = styled(Switch)(({theme}) => ({
   width: 68,

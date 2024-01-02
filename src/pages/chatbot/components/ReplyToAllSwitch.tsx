@@ -1,16 +1,8 @@
-import {useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import {Switch, Tooltip} from '@mui/joy'
-import {redirect} from 'react-router-dom'
-import UrlBuilder, {AuthEndPoints} from '../../../utils/UrlBuilder'
 import {useLoginContext} from '../../../auth/LoginContext'
-import {
-  getPersonas,
-  joinChannelRpc,
-  leaveChannelRpc,
-  setReplyToAllRpc,
-} from '../../../services/TwitchServices'
 import {BotSwitchProps} from './BotSwitchContainer'
+import {setReplyToAllRpc} from '../../../services/twitch/TwitchBotService'
 
 const activeToggle = 'Your Chatbot is Online! Give chad  a command in your twitch channel'
 const inactiveToggle =
