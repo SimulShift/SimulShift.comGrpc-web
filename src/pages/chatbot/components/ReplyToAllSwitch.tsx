@@ -29,7 +29,7 @@ export const MuiSwitchLarge = styled(Switch)(({theme}) => ({
   },
 }))
 
-const ReplyToAllSwitch = ({status, setStatus}: BotSwitchProps) => {
+const ReplyToAllSwitch = ({status, setStatus, persona}: BotSwitchProps) => {
   const loginContext = useLoginContext()
   const defaultActiveToggle = activeToggle ?? 'Switched On'
   const defaultInactiveToggle = inactiveToggle ?? 'Switched Off'
@@ -43,7 +43,7 @@ const ReplyToAllSwitch = ({status, setStatus}: BotSwitchProps) => {
       console.log('Missing displayName or sub!')
       return
     }
-    setReplyToAllRpc(setStatus, checked)
+    setReplyToAllRpc(setStatus, persona.getId(), checked)
   }
 
   return (

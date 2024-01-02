@@ -9,9 +9,8 @@ const CreatePersonalityComponent = () => {
         alignItems: 'center',
         minHeight: '80px',
       }}>
-      <Typography style={{fontWeight: 'bold', color: 'black'}}>
-        Create your own Personality
-      </Typography>
+      <Typography>Create your own Personality</Typography>
+      <Typography>Work in progresss... </Typography>
     </Box>
   )
 }

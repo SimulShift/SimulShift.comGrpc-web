@@ -9,6 +9,7 @@ const HistoryComponent = () => {
         alignItems: 'center',
       }}>
       <Typography style={{fontWeight: 'bold', color: 'black'}}>Message History</Typography>
+      <div>work in progress...</div>
       <div>--------</div>
       <div>--------</div>
       <div>--------</div>

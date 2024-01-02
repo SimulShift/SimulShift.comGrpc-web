@@ -1,32 +1,13 @@
 import {useEffect, useState} from 'react'
-import {Box, Typography} from '@mui/joy'
-import {Personality, fetchPersonalities} from '../../../services/gpt/UserServices'
-import SelectBar from '../../../navbar/components/SelectBar'
+import {Box, Select, Typography, Option} from '@mui/joy'
+import {Persona, Personality} from '../../../Protos/TwitchBot_pb'
+import {switchPersonalityRpc} from '../../../services/twitch/TwitchBotService'
 
-type PersonalityOption = {
-  text: Personality
-  value: Personality
+type SelectPersonalityComponentProps = {
+  persona: Persona
 }
 
-const SelectPersonalityComponent = () => {
-  const [personalityOptions, setPersonalityOptions] = useState<PersonalityOption[]>([
-    {text: Personality.Helpful, value: Personality.Helpful},
-  ])
-
-  useEffect(() => {
-    fetchPersonalities().then(personalities => {
-      const options = personalities.map(personality => ({
-        text: personality,
-        value: personality,
-      }))
-      setPersonalityOptions(options)
-    })
-  }, [])
-
-  const onChange = (newValue: string) => {
-    console.log('Selected personality: ', newValue)
-  }
-
+const SelectPersonalityComponent = ({persona}: SelectPersonalityComponentProps) => {
   return (
     <Box
       sx={{
@@ -34,8 +15,24 @@ const SelectPersonalityComponent = () => {
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-      <Typography style={{fontWeight: 'bold', color: 'black'}}>Select</Typography>
-      <SelectBar onChange={onChange} options={personalityOptions} />
+      <Typography style={{fontWeight: 'bold', color: 'black'}}>Select Personality</Typography>
+      <Select
+        defaultValue={Personality.CHAD}
+        onChange={(e, value) => {
+          if (!value) return
+
+          // call rpc to change personality
+          switchPersonalityRpc(persona.getId(), value)
+        }}>
+        {Object.keys(Personality).map(key => {
+          if (key == 'UNKNOWN') return
+          return (
+            <Option key={key} value={Personality[key as keyof typeof Personality]}>
+              {key}
+            </Option>
+          )
+        })}
+      </Select>
     </Box>
   )
 }

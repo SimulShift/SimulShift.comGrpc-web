@@ -381,6 +381,128 @@ proto.TwitchBotServicePromiseClient.prototype.createPersona =
 
 
 /**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.DeletePersonaRequest,
+ *   !proto.Empty>}
+ */
+const methodDescriptor_TwitchBotService_deletePersonaRpc = new grpc.web.MethodDescriptor(
+  '/TwitchBotService/deletePersonaRpc',
+  grpc.web.MethodType.UNARY,
+  proto.DeletePersonaRequest,
+  Common_pb.Empty,
+  /**
+   * @param {!proto.DeletePersonaRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  Common_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.DeletePersonaRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.TwitchBotServiceClient.prototype.deletePersonaRpc =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/TwitchBotService/deletePersonaRpc',
+      request,
+      metadata || {},
+      methodDescriptor_TwitchBotService_deletePersonaRpc,
+      callback);
+};
+
+
+/**
+ * @param {!proto.DeletePersonaRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.TwitchBotServicePromiseClient.prototype.deletePersonaRpc =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/TwitchBotService/deletePersonaRpc',
+      request,
+      metadata || {},
+      methodDescriptor_TwitchBotService_deletePersonaRpc);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.SwitchPersonalityRequest,
+ *   !proto.Empty>}
+ */
+const methodDescriptor_TwitchBotService_switchPersonalityRpc = new grpc.web.MethodDescriptor(
+  '/TwitchBotService/switchPersonalityRpc',
+  grpc.web.MethodType.UNARY,
+  proto.SwitchPersonalityRequest,
+  Common_pb.Empty,
+  /**
+   * @param {!proto.SwitchPersonalityRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  Common_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.SwitchPersonalityRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.TwitchBotServiceClient.prototype.switchPersonalityRpc =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/TwitchBotService/switchPersonalityRpc',
+      request,
+      metadata || {},
+      methodDescriptor_TwitchBotService_switchPersonalityRpc,
+      callback);
+};
+
+
+/**
+ * @param {!proto.SwitchPersonalityRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.TwitchBotServicePromiseClient.prototype.switchPersonalityRpc =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/TwitchBotService/switchPersonalityRpc',
+      request,
+      metadata || {},
+      methodDescriptor_TwitchBotService_switchPersonalityRpc);
+};
+
+
+/**
  * @param {string} hostname
  * @param {?Object} credentials
  * @param {?grpc.web.ClientOptions} options

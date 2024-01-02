@@ -9,6 +9,7 @@ const StatisticsComponent = () => {
         alignItems: 'center',
       }}>
       <Typography style={{fontWeight: 'bold', color: 'black'}}>Statistics</Typography>
+      <div>Work in progress...</div>
       <div>1. Number of Messages</div>
       <div>2. Queries Left Command</div>
     </Box>

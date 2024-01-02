@@ -10,6 +10,9 @@ const DirectionsComponent = () => {
         minHeight: '65px',
       }}>
       <Typography style={{fontWeight: 'bold', color: 'black'}}>Directions</Typography>
+      <Typography>
+        Press the joined channel switch! the bot will automatically join your channel
+      </Typography>
     </Box>
   )
 }

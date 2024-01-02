@@ -143,8 +143,8 @@ export class SetReplyToAllRequest extends jspb.Message {
   getReplytoall(): boolean;
   setReplytoall(value: boolean): SetReplyToAllRequest;
 
-  getPersonality(): Personality;
-  setPersonality(value: Personality): SetReplyToAllRequest;
+  getPersonaid(): number;
+  setPersonaid(value: number): SetReplyToAllRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SetReplyToAllRequest.AsObject;
@@ -157,7 +157,7 @@ export class SetReplyToAllRequest extends jspb.Message {
 export namespace SetReplyToAllRequest {
   export type AsObject = {
     replytoall: boolean,
-    personality: Personality,
+    personaid: number,
   }
 }
 
@@ -179,6 +179,46 @@ export class CreatePersonaRequest extends jspb.Message {
 export namespace CreatePersonaRequest {
   export type AsObject = {
     name: string,
+    personality: Personality,
+  }
+}
+
+export class DeletePersonaRequest extends jspb.Message {
+  getPersonaid(): number;
+  setPersonaid(value: number): DeletePersonaRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeletePersonaRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeletePersonaRequest): DeletePersonaRequest.AsObject;
+  static serializeBinaryToWriter(message: DeletePersonaRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeletePersonaRequest;
+  static deserializeBinaryFromReader(message: DeletePersonaRequest, reader: jspb.BinaryReader): DeletePersonaRequest;
+}
+
+export namespace DeletePersonaRequest {
+  export type AsObject = {
+    personaid: number,
+  }
+}
+
+export class SwitchPersonalityRequest extends jspb.Message {
+  getPersonaid(): number;
+  setPersonaid(value: number): SwitchPersonalityRequest;
+
+  getPersonality(): Personality;
+  setPersonality(value: Personality): SwitchPersonalityRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SwitchPersonalityRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SwitchPersonalityRequest): SwitchPersonalityRequest.AsObject;
+  static serializeBinaryToWriter(message: SwitchPersonalityRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SwitchPersonalityRequest;
+  static deserializeBinaryFromReader(message: SwitchPersonalityRequest, reader: jspb.BinaryReader): SwitchPersonalityRequest;
+}
+
+export namespace SwitchPersonalityRequest {
+  export type AsObject = {
+    personaid: number,
     personality: Personality,
   }
 }

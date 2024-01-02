@@ -8,7 +8,7 @@ import {Container, Button, Select, Option, IconButton, Box} from '@mui/joy'
 import {useLoginContext} from '../../auth/LoginContext'
 import {Persona, Personality} from '../../Protos/TwitchBot_pb'
 import {useEffect, useState} from 'react'
-import {createPersona, getPersonas} from '../../services/twitch/TwitchBotService'
+import {createPersona, deletePersonaRpc, getPersonas} from '../../services/twitch/TwitchBotService'
 import {getEnumKey} from '../../utils/EnumTools'
 import {AiFillDelete} from 'react-icons/ai'
 
@@ -44,6 +44,10 @@ const ChatBotPage = () => {
     // Logic to delete the persona
     console.log('Deleting persona with ID:', personaId)
     // You would typically call a service method to delete the persona from the database
+
+    deletePersonaRpc(personaId).then(() => {
+      setPersonas(prevPersonas => prevPersonas.filter(persona => persona.getId() !== personaId))
+    })
   }
 
   return (

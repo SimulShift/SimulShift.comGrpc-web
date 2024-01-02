@@ -44,6 +44,20 @@ export class TwitchBotServiceClient {
                response: TwitchBot_pb.Persona) => void
   ): grpcWeb.ClientReadableStream<TwitchBot_pb.Persona>;
 
+  deletePersonaRpc(
+    request: TwitchBot_pb.DeletePersonaRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: Common_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<Common_pb.Empty>;
+
+  switchPersonalityRpc(
+    request: TwitchBot_pb.SwitchPersonalityRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: Common_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<Common_pb.Empty>;
+
 }
 
 export class TwitchBotAdminServiceClient {
@@ -110,6 +124,16 @@ export class TwitchBotServicePromiseClient {
     request: TwitchBot_pb.CreatePersonaRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<TwitchBot_pb.Persona>;
+
+  deletePersonaRpc(
+    request: TwitchBot_pb.DeletePersonaRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<Common_pb.Empty>;
+
+  switchPersonalityRpc(
+    request: TwitchBot_pb.SwitchPersonalityRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<Common_pb.Empty>;
 
 }
 

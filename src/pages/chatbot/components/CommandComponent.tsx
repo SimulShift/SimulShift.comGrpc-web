@@ -1,6 +1,11 @@
 import {Box, Typography} from '@mui/joy'
+import {Persona} from '../../../Protos/TwitchBot_pb'
 
-const CommandComponent = () => {
+type CommandComponentProps = {
+  persona: Persona
+}
+
+const CommandComponent = ({persona}: CommandComponentProps) => {
   return (
     <Box
       sx={{
@@ -9,9 +14,9 @@ const CommandComponent = () => {
         alignItems: 'center',
       }}>
       <Typography style={{fontWeight: 'bold', color: 'black'}}>Command</Typography>
-      <div>!Chad,</div>
-      <div>Chad,</div>
-      <div>Hey Chad,</div>
+      {persona.getCommandsList().map(command => {
+        return <Typography>{command}</Typography>
+      })}
     </Box>
   )
 }

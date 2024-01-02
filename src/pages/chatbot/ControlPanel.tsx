@@ -23,9 +23,9 @@ enum ControlPanelItem {
   Toggle = 'Toggle',
   ReplyToAll = 'ReplyToAll',
   Select = 'Select',
+  Command = 'Command',
   History = 'History',
   Create = 'Create',
-  Command = 'Command',
   Statistics = 'Statistics',
   Directions = 'Directions',
 }
@@ -51,13 +51,13 @@ const dynamicComponent = (item: ControlPanelItem, persona: Persona) => {
         />
       )
     case ControlPanelItem.Select:
-      return <SelectPersonalityComponent />
+      return <SelectPersonalityComponent persona={persona} />
     case ControlPanelItem.History:
       return <HistoryComponent />
     case ControlPanelItem.Create:
       return <CreatePersonalityComponent />
     case ControlPanelItem.Command:
-      return <CommandComponent />
+      return <CommandComponent persona={persona} />
     case ControlPanelItem.Statistics:
       return <StatisticsComponent />
     case ControlPanelItem.Directions:

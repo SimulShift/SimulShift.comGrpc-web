@@ -6,11 +6,13 @@ import {Empty} from '../../Protos/Common_pb'
 import {TwitchBotServicePromiseClient} from '../../Protos/TwitchBot_grpc_web_pb'
 import {
   CreatePersonaRequest,
+  DeletePersonaRequest,
   JoinChannelRequest,
   LeaveChannelRequest,
   Personality,
   ReadyState,
   SetReplyToAllRequest,
+  SwitchPersonalityRequest,
 } from '../../Protos/TwitchBot_pb'
 import {getEnumKey} from '../../utils/EnumTools'
 
@@ -62,13 +64,34 @@ export const leaveChannelRpc = async (personaId: number, setStatus: (status: boo
 
 export const setReplyToAllRpc = async (
   setStatus: (status: boolean) => void,
+  personaId: number,
   replyToAll: boolean,
 ) => {
   try {
-    const req = new SetReplyToAllRequest().setReplytoall(replyToAll)
+    const req = new SetReplyToAllRequest().setReplytoall(replyToAll).setPersonaid(personaId)
     await twitchBotServiceClient.setReplyToAll(req)
     setStatus(replyToAll)
   } catch (err) {
     console.log('error setting reply to all:', err)
+  }
+}
+
+export const deletePersonaRpc = async (personaId: number) => {
+  try {
+    await twitchBotServiceClient.deletePersonaRpc(
+      new DeletePersonaRequest().setPersonaid(personaId),
+    )
+  } catch (err) {
+    console.log('error deleting persona:', err)
+  }
+}
+
+export const switchPersonalityRpc = async (personaId: number, personality: Personality) => {
+  try {
+    await twitchBotServiceClient.switchPersonalityRpc(
+      new SwitchPersonalityRequest().setPersonaid(personaId).setPersonality(personality),
+    )
+  } catch (err) {
+    console.log('error switching personality:', err)
   }
 }
